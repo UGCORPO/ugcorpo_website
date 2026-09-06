@@ -1,429 +1,137 @@
 <!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="JW XYPro ver1.0 - 測量座標をJw_cadへ作図するWindows用外部変形ツール">
-  <title>JW XYPro ver1.0 | UGCORPO</title>
-  <style>
-    :root {
-      --bg: #07111f;
-      --panel: #0d1b2d;
-      --panel2: #11243a;
-      --text: #f4f8ff;
-      --muted: #a9b9cd;
-      --blue: #2b7cff;
-      --blue2: #56a2ff;
-      --line: rgba(255,255,255,.10);
-      --green: #41d17d;
-    }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    body {
-      margin: 0;
-      font-family: "Segoe UI", "Yu Gothic UI", "Meiryo", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% 0%, rgba(43,124,255,.18), transparent 34rem),
-        linear-gradient(180deg, #07111f, #050b13);
-      line-height: 1.7;
-    }
+  <title>JW XYPro | UG/CORPO</title>
 
-    a { color: inherit; }
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
-    .wrap {
-      width: min(1080px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    header {
-      border-bottom: 1px solid var(--line);
-      background: rgba(7,17,31,.82);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      text-decoration: none;
-      font-weight: 800;
-      letter-spacing: .06em;
-    }
-
-    .navlinks {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .navlinks a {
-      text-decoration: none;
-    }
-
-    .navlinks a:hover { color: white; }
-
-    .hero {
-      padding: 88px 0 56px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      align-items: center;
-      gap: 56px;
-    }
-
-    .eyebrow {
-      color: var(--blue2);
-      font-weight: 700;
-      letter-spacing: .12em;
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 12px 0 18px;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.03;
-      letter-spacing: -.035em;
-    }
-
-    .version {
-      display: inline-block;
-      margin-left: 10px;
-      padding: 5px 10px;
-      border: 1px solid rgba(65,209,125,.35);
-      border-radius: 999px;
-      background: rgba(65,209,125,.10);
-      color: #83e9ad;
-      font-size: 14px;
-      vertical-align: middle;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 680px;
-      margin: 0 0 28px;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 21px);
-    }
-
-    .buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 800;
-      transition: transform .16s ease, filter .16s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.08);
-    }
-
-    .primary {
-      background: linear-gradient(135deg, var(--blue), #1657d9);
-      box-shadow: 0 14px 34px rgba(30,100,255,.25);
-    }
-
-    .secondary {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color: #dce8f7;
-    }
-
-    .note {
-      margin-top: 14px;
-      color: #8194aa;
-      font-size: 13px;
-    }
-
-    .xy-icon {
-      width: min(320px, 76vw);
-      aspect-ratio: 1;
-      margin: auto;
-      border-radius: 28%;
-      position: relative;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 70% 20%, rgba(255,255,255,.22), transparent 22%),
-        linear-gradient(145deg, #2c8dff, #0750c9 60%, #052d76);
-      box-shadow:
-        inset 0 0 0 2px rgba(255,255,255,.12),
-        0 35px 70px rgba(0,75,190,.30);
-    }
-
-    .xy-icon::before,
-    .xy-icon::after {
-      content: "";
-      position: absolute;
-      background: rgba(255,255,255,.9);
-    }
-
-    .xy-icon::before {
-      width: 72%;
-      height: 3px;
-    }
-
-    .xy-icon::after {
-      width: 3px;
-      height: 72%;
-    }
-
-    .xy-icon strong {
-      position: relative;
-      z-index: 2;
-      font-size: clamp(72px, 12vw, 126px);
-      letter-spacing: -.08em;
-      text-shadow: 0 4px 12px rgba(0,0,0,.18);
-    }
-
-    section {
-      padding: 44px 0;
-    }
-
-    .section-title {
-      margin: 0 0 22px;
-      font-size: clamp(27px, 4vw, 38px);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .card {
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(17,36,58,.94), rgba(10,24,40,.92));
-    }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 19px;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .install {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255,255,255,.035);
-      padding: 28px;
-    }
-
-    .steps {
-      margin: 0;
-      padding-left: 23px;
-    }
-
-    .steps li {
-      margin: 10px 0;
-      padding-left: 6px;
-    }
-
-    code {
-      padding: 2px 7px;
-      border-radius: 6px;
-      background: rgba(255,255,255,.08);
-      color: #dcecff;
-    }
-
-    .download-box {
-      margin: 38px 0 18px;
-      padding: 32px;
-      border-radius: 22px;
-      border: 1px solid rgba(64,139,255,.28);
-      background:
-        linear-gradient(135deg, rgba(43,124,255,.16), rgba(43,124,255,.04));
-      text-align: center;
-    }
-
-    .download-box h2 {
-      margin: 0 0 8px;
-    }
-
-    .download-box p {
-      color: var(--muted);
-      margin: 0 0 20px;
-    }
-
-    footer {
-      margin-top: 48px;
-      padding: 28px 0 42px;
-      border-top: 1px solid var(--line);
-      color: #7f91a6;
-      font-size: 13px;
-    }
-
-    @media (max-width: 760px) {
-      .hero {
-        padding-top: 56px;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 38px;
-      }
-      .hero-art {
-        order: -1;
-      }
-      .xy-icon {
-        width: 190px;
-      }
-      .cards {
-        grid-template-columns: 1fr;
-      }
-      .nav {
-        align-items: flex-start;
-        padding: 15px 0;
-        flex-direction: column;
-        gap: 8px;
-      }
-    }
-  </style>
 </head>
 
 <body>
+
+
 <header>
-  <div class="wrap nav">
-    <a class="brand" href="index.html">UGCORPO</a>
-    <nav class="navlinks">
-      <a href="index.html">ホーム</a>
-      <a href="minicad3d.html">Mini CAD 3D</a>
-      <a href="privacy.html">プライバシーポリシー</a>
-    </nav>
-  </div>
+
+  <a href="index.html">
+
+    <img
+      src="images/logo.png"
+      alt="UG/CORPO"
+      class="site-logo"
+    >
+
+  </a>
+
 </header>
 
+
 <main>
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">Jw_cad External Transformation Tool</div>
-        <h1>JW XYPro <span class="version">ver1.0</span></h1>
-        <p class="lead">
-          測量座標を、かんたんにJw_cadへ。
-          点名・X座標・Y座標を入力して、測点と点名をすばやく作図できるWindows用外部変形ツールです。
-        </p>
 
-        <div class="buttons">
-          <a class="btn primary" href="https://github.com/UGCORPO/ugcorpo_website/releases/download/v1.0.0/JW_XYPro_v1.0.zip">
-            Windows版をダウンロード
-          </a>
-          <a class="btn secondary"
-             href="https://github.com/UGCORPO/ugcorpo_website/releases/tag/v1.0.0">
-            リリース情報
-          </a>
-        </div>
 
-        <div class="note">
-          Windows 10 / 11 64bit ・ Jw_cad対応 ・ ZIP 約44MB
-        </div>
-      </div>
+  <section class="app-detail">
 
-      <div class="hero-art">
-        <div class="xy-icon" aria-label="JW XYPro">
-          <strong>XY</strong>
-        </div>
-      </div>
-    </div>
+    <img
+      src="images/jw_xypro_icon.png"
+      alt="JW XYPro"
+      class="detail-icon"
+    >
+
+
+    <h1>JW XYPro</h1>
+
+
+    <p>
+      測量座標をJw_cadへ
+      かんたんに作図できるWindows用ツールです。
+    </p>
+
+
+    <h2>ソフト概要</h2>
+
+    <p>
+      JW XYProは、
+      点名・X座標・Y座標を入力して
+      Jw_cadへ測点や点名を作図するための
+      外部変形ツールです。
+    </p>
+
+
+    <h2>主な機能</h2>
+
+    <p>
+      ・点名 / X座標 / Y座標の入力<br>
+      ・Excel等からの貼り付け<br>
+      ・TXT / CSV / SIMAの読込・保存<br>
+      ・Jw_cadへの測点・点名作図<br>
+      ・座標オフセット<br>
+      ・測点記号 / サイズ / 色の設定
+    </p>
+
+
+    <h2>動作環境</h2>
+
+    <p>
+      ・Windows 10 / 11 64bit<br>
+      ・Jw_cad
+    </p>
+
+
+    <h2>ダウンロード</h2>
+
+    <p>
+      JW XYPro ver1.0はこちらからダウンロードできます。
+    </p>
+
+
+    <a
+      href="https://github.com/UGCORPO/ugcorpo_website/releases/download/v1.0.0/JW_XYPro_v1.0.zip"
+      class="privacy-button"
+    >
+
+      JW XYPro ver1.0をダウンロード
+
+    </a>
+
+
+    <br><br>
+
+
+    <a href="https://github.com/UGCORPO/ugcorpo_website/releases/tag/v1.0.0">
+
+      リリース情報を見る
+
+    </a>
+
+
+    <br><br>
+
+
+    <a href="index.html">
+
+      ← UG/CORPOトップへ戻る
+
+    </a>
+
+
   </section>
 
-  <section>
-    <div class="wrap">
-      <h2 class="section-title">できること</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>座標入力</h3>
-          <p>点名・X座標・Y座標を直接入力。Excelなどから3列まとめて貼り付けることもできます。</p>
-        </article>
-        <article class="card">
-          <h3>TXT / CSV / SIMA</h3>
-          <p>座標データの読み込み・保存に対応。既存データを使った作図をスムーズにします。</p>
-        </article>
-        <article class="card">
-          <h3>Jw_cadへ作図</h3>
-          <p>測点記号・点名・サイズ・色を設定して、Jw_cadへまとめて作図できます。</p>
-        </article>
-        <article class="card">
-          <h3>座標オフセット</h3>
-          <p>大きな測量座標も、元データを変更せずJw_cad作図時だけオフセットできます。</p>
-        </article>
-        <article class="card">
-          <h3>測点記号</h3>
-          <p>点・○・◎・＋などから選択。測点サイズも自動または任意指定できます。</p>
-        </article>
-        <article class="card">
-          <h3>見やすく調整</h3>
-          <p>点名サイズ、測点色、文字色などを作図用途に合わせて設定できます。</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="wrap">
-      <h2 class="section-title">使い方</h2>
-      <div class="install">
-        <ol class="steps">
-          <li>ダウンロードした <code>JW_XYPro_v1.0.zip</code> を解凍します。</li>
-          <li>解凍したフォルダを <code>C:\jww\</code> などへコピーします。</li>
-          <li>Jw_cadを起動し、「外部変形」から <code>JW_XYPro.bat</code> を選びます。</li>
-          <li>座標を入力、またはTXT / CSV / SIMAを読み込みます。</li>
-          <li>「Jw_cadへ作図」を押すと、作図結果がJw_cadへ反映されます。</li>
-        </ol>
-      </div>
-
-      <div class="download-box">
-        <h2>JW XYPro ver1.0</h2>
-        <p>Windows 10 / 11 64bit向け。自己完結版のため.NETの追加インストールは不要です。</p>
-        <a class="btn primary" href="https://github.com/UGCORPO/ugcorpo_website/releases/download/v1.0.0/JW_XYPro_v1.0.zip">
-          JW_XYPro_v1.0.zip をダウンロード
-        </a>
-      </div>
-
-      <p class="note">
-        ※ 初回起動時にWindowsの警告が表示される場合があります。ZIP内のREADME.txtもご確認ください。
-      </p>
-    </div>
-  </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    © UGCORPO
-  </div>
-</footer>
+
 </body>
+
 </html>
