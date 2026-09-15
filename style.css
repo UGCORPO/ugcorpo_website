@@ -175,3 +175,42 @@ p {
 
   color: #777;
 }
+
+.play-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.test-button,
+.store-button {
+  display: inline-block;
+  padding: 15px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.test-button {
+  background-color: #e65100;
+  color: white;
+}
+
+.store-button {
+  background-color: #222;
+  color: white;
+}
+
+.test-button:hover,
+.store-button:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+.test-note {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
