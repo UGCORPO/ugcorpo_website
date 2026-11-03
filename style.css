@@ -214,3 +214,28 @@ p {
   font-size: 14px;
   color: #666;
 }
+
+/* アフィリエイトコーナー */
+
+.affiliate-card {
+  margin-top: 30px;
+}
+
+.affiliate-notice {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.affiliate-category {
+  background: #f7f8fa;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 15px;
+  border: 1px solid #e5e5e5;
+}
+
+.affiliate-category h2 {
+  font-size: 25px;
+  margin-top: 0;
+}
