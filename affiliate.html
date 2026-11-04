@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 11・楽天商品第1号】</title>
+<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 12・画像付きチラシ】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -292,6 +292,35 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  .wood-block[data-shape="triangle"]{padding-top:7px}
 }
 
+
+/* VERSION 12：防塵キャップの写真付きチラシ（公式広告HTMLは無改変） */
+.flyer[data-id="dustcap"]{background:#edf4ff;box-shadow:2px 8px 1px #2410061a,7px 17px 27px #21120b70,0 0 0 2px #4a73ac44}
+.flyer[data-id="dustcap"] .flyer-icon{font-size:2.15rem;line-height:1.1;margin:2px 0}
+.flyer[data-id="dustcap"] .flyer-title{font-size:1.13rem}
+.flyer[data-id="dustcap"] .flyer-copy{font-size:.67rem}
+.flyer-teaser-comment{display:block;font-weight:900;font-size:.71rem;line-height:1.5;color:#284969;margin-top:5px;padding:5px 7px;border-radius:6px;background:#ffffffb8}
+.flyer[data-id="dustcap"] .flyer-end{font-size:.61rem}
+.product-photo-head{display:block;color:#9d6c37;font-size:.76rem;font-weight:900;margin-top:12px}
+.product-comment{background:#eaf2ff;border-left:5px solid #4e78b1;padding:13px 14px;border-radius:0 9px 9px 0;font-weight:900;margin:12px 0 8px!important;font-size:clamp(1rem,3vw,1.2rem)!important}
+.rakuten-widget-shell{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-color:#c7b39a transparent;border:1px solid #e4d7c5;border-radius:10px;background:white;margin:11px 0 9px}
+.rakuten-widget-frame{border:0;width:530px;height:280px;display:block;background:#fff}
+.official-ad-note{font-size:.72rem!important;color:#80654b;margin:4px 0 6px!important;line-height:1.5!important}
+#detail.has-official-ad{width:min(600px,calc(100vw - 22px));max-height:92dvh}
+#detail.has-official-ad .paper-modal{height:min(690px,86dvh);min-height:440px}
+#detail.has-official-ad .paper-face{padding:21px 23px;justify-content:flex-start}
+#detail.has-official-ad .paper-face h2{font-size:clamp(1.25rem,3.5vw,1.75rem);margin:6px 0}
+#detail.has-official-ad .paper-face p{font-size:.88rem;line-height:1.7;margin:8px 0}
+#detail.has-official-ad .modal-icon{display:none}
+#detail.has-official-ad .modal-buttons{margin-top:auto;padding-top:12px}
+#detail.has-official-ad .memo-list{font-size:.85rem;line-height:1.8}
+@media(max-width:760px){
+  .flyer[data-id="dustcap"] .flyer-icon{font-size:1.6rem}
+  .flyer[data-id="dustcap"] .flyer-title{font-size:.87rem}
+  .flyer[data-id="dustcap"] .flyer-copy{font-size:.58rem}
+  .flyer-teaser-comment{font-size:.58rem;padding:3px 4px}
+  #detail.has-official-ad .paper-face{padding:16px}
+  #detail.has-official-ad .rakuten-widget-frame{width:530px}
+}
 </style>
 </head>
 <body>
@@ -357,31 +386,49 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <div class="ambient-light" aria-hidden="true"></div>
  <div class="scene-toast" id="sceneToast" role="status" aria-live="polite"></div>
 </div>
-<p class="room-foot">畳に散らばった10個の積み木をつかんで、積んだり崩したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ バスルームラックのチラシには楽天市場への広告リンクがあります。そのほかのチラシは準備中です。</p>
+<p class="room-foot">畳に散らばった10個の積み木をつかんで、積んだり崩したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ バスルームラックとType-C防塵キャップには楽天市場への広告リンクがあります。そのほかのチラシは準備中です。</p>
 </main>
 <dialog id="detail" aria-label="チラシの商品紹介">
  <div class="paper-modal"><div class="paper-modal-inner">
    <section class="paper-face front">
     <div><div class="modal-top"><span class="modal-kicker" id="front-category"></span><button class="close" type="button" data-close aria-label="閉じる">×</button></div>
-    <div class="modal-icon" id="front-icon"></div><h2 id="front-title"></h2><p id="front-description"></p></div>
+    <div class="modal-icon" id="front-icon"></div><h2 id="front-title"></h2><p id="front-description"></p><p class="product-comment" id="front-comment" hidden></p><div id="front-rakuten-widget" hidden></div></div>
     <div class="modal-buttons"><button type="button" data-flip>↻ チラシの裏を見る</button><button type="button" data-close>机に戻す</button></div>
    </section>
    <section class="paper-face back">
     <div><div class="modal-top"><span class="modal-kicker">裏面の手書きメモ</span><button class="close" type="button" data-close aria-label="閉じる">×</button></div>
     <h2 class="memo-title" id="back-title"></h2><p id="back-description"></p><ul class="memo-list" id="back-list"></ul></div>
-    <div><div class="modal-buttons" id="shop-links"></div><p class="placeholder" id="links-note">※ このチラシの商品リンクはまだ準備中です。</p>
+    <div><div id="back-rakuten-widget" hidden></div><div class="modal-buttons" id="shop-links"></div><p class="placeholder" id="links-note">※ このチラシの商品リンクはまだ準備中です。</p>
     <div class="modal-buttons"><button type="button" data-flip>↶ 表に戻す</button><button type="button" data-close>机に戻す</button></div></div>
    </section>
  </div></div>
 </dialog>
 <script>
 'use strict';
-// 商品のデータ。バスルームラックはユーザーが楽天アフィリエイトで生成したURL。ほかは準備中。
+// 商品のデータ。楽天リンク付きはバスルームラックと防塵キャップ。ほかは準備中。
+
+// 楽天アフィリエイト提供の「画像とテキスト」HTMLは編集せず、独立したフレーム内で表示します。
+const officialDustCapHtml = String.raw`<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/59235df3.6c94da3e.59235df4.78cce264/?me_id=1438246&item_id=10000034&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fmorely%2Fcabinet%2Fmain_img%2Fimg033.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">【 5個セット 】 Type-C 充電ポート カバー USB-C キャップ コネクタカバー シリコンキャップ 紛失防止 防塵 防水 タイプC キャップ type-c カバー Type-c ダストプラグ iPhone15 16 17 17e Android 防塵キャップ スマホ タブレット 充電口 保護カバー</a><br><span >価格：698円～（税込、送料別)</span> <span style="color:#BBB">(2026/11/4時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>`;
+function insertOfficialWidget(host){
+ host.replaceChildren();
+ const label=document.createElement('span');label.className='product-photo-head';label.textContent='楽天市場の商品画像・公式広告（PR）';
+ const scroll=document.createElement('div');scroll.className='rakuten-widget-shell';
+ const iframe=document.createElement('iframe');iframe.className='rakuten-widget-frame';
+ iframe.title='楽天アフィリエイト：Type-C防塵キャップ（画像とテキスト）';
+ iframe.setAttribute('sandbox','allow-popups allow-popups-to-escape-sandbox');
+ iframe.setAttribute('loading','eager');
+ iframe.srcdoc='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=530"></head><body style="margin:0">'+officialDustCapHtml+'</body></html>';
+ scroll.append(iframe);
+ const note=document.createElement('p');note.className='official-ad-note';note.textContent='楽天の公式広告です。スマホでは画像部分を横へスクロールできます。';
+ host.append(label,scroll,note);
+}
+
 const products = [
  {id:'secret',category:'ひみつの掘り出し物',icon:'✨',title:'金色のチラシ',short:'ほかの紙の下に隠れていた秘密のメモ。',back:'おめでとう！ ちゃぶ台に隠されたチラシを発見。ここは将来『本日の掘り出し物』を紹介する特別枠にできます。',notes:['チラシを動かして見つけたね！','商品紹介はこれから追加予定','実際の割引や特典を示すものではありません'],paper:'#f8d17c',x:'42%',y:'37%',angle:'5deg',z:2,xm:'47%',ym:'38%',rm:'5deg',rakuten:null,amazon:null,hidden:true},
  {id:'measure',category:'現場の道具',icon:'📐',title:'レーザー距離計',short:'現場でサッと寸法チェック。',back:'測りたい場所へすばやく合わせて、距離を確認できるのが魅力。',notes:['持ち歩きやすさをチェック','屋外での表示の見やすさに注目','実機レビューはこれから'],paper:'#fff0ce',x:'10%',y:'22%',angle:'-15deg',z:5,xm:'14%',ym:'21%',rm:'-14deg',rakuten:null,amazon:null},
  {id:'mouse',category:'PC・ガジェット',icon:'🖱️',title:'作業用マウス',short:'PC作業を気持ちよくする相棒。',back:'CADや事務作業の操作性は、マウスの形やクリック感で大きく変わります。',notes:['握り心地と重さを比較','ボタン配置をチェック','実機レビューはこれから'],paper:'#dceffc',x:'33%',y:'18%',angle:'12deg',z:4,xm:'49%',ym:'20%',rm:'11deg',rakuten:null,amazon:null},
  {id:'bathrack',category:'【PR】浴室収納',icon:'🛁',title:'バスルームラック',short:'シャンプーボトルや浴室小物の収納を見直したい人へ。',back:'楽天市場のバスルームラックをご紹介。浴室のボトル類をまとめる収納アイテムです。商品の詳細・対応する設置方法はリンク先で確認してください。',notes:['楽天市場の商品紹介（アフィリエイト広告）です','購入前にサイズ・取付方法・耐荷重を確認','価格・在庫・配送条件は楽天の商品ページで確認','使用感を実際に検証したレビューではありません'],paper:'#ffdecb',x:'54%',y:'26%',angle:'-10deg',z:6,xm:'27%',ym:'42%',rm:'-12deg',rakuten:"https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9",amazon:null},
+ {id:'dustcap',category:'【PR】スマホ小物',icon:'🔌',title:'Type-C 防塵キャップ',short:'充電口に差し込んでホコリの侵入を抑える、小さな端子カバー。',comment:'スマホにもパンツを履かせてください',back:'USB Type-C端子に差し込む、シリコン製の防塵キャップです。スマートフォンやタブレットなどの使っていない充電口を、ほこりやごみから守りたいときに使える小物。充電するときは取り外して使います。',notes:['5個セットの商品です','USB Type-C端子向け。端子の形状・機種への対応を確認','「防水」の表記があっても、端末本体の防水性能を保証するものではありません','掲載時の価格：698円～（2026年11月4日・税込、送料別）。最新価格は楽天市場で確認','個人的なひとことです。実機使用レビューではありません'],paper:'#e9f2ff',x:'69%',y:'39%',angle:'-7deg',z:10,xm:'50%',ym:'64%',rm:'6deg',rakuten:null,amazon:null,officialWidget:true},
  {id:'arm',category:'デスク周り',icon:'🖥️',title:'モニターアーム',short:'机をもっと広く使いたい。',back:'モニターの位置調節がしやすく、作業スペースもすっきりするアイテム。',notes:['耐荷重と対応サイズ','クランプと机の相性','実機レビューはこれから'],paper:'#e6f4de',x:'23%',y:'47%',angle:'9deg',z:7,xm:'54%',ym:'43%',rm:'12deg',rakuten:null,amazon:null},
  {id:'light',category:'気になる小物',icon:'🔦',title:'小型ライト',short:'暗い場所の作業を明るく。',back:'屋内外で使える携帯ライト。明るさとバッテリーの持ちを比べたい商品です。',notes:['明るさと照射範囲','充電方法と持ち時間','実機レビューはこれから'],paper:'#eee2fa',x:'53%',y:'48%',angle:'-14deg',z:8,xm:'17%',ym:'63%',rm:'-9deg',rakuten:null,amazon:null}
 ];
@@ -400,6 +447,7 @@ products.forEach(p=>{
  const short=document.createElement('span');short.className='flyer-copy';short.textContent=p.short;
  const end=document.createElement('span');end.className='flyer-end';end.textContent='手に取って、裏を見る ↗';
  const outer=document.createElement('span');outer.append(kicker,ic,title,short);
+ if(p.comment){const comment=document.createElement('span');comment.className='flyer-teaser-comment';comment.textContent='UG/CORPOのひとこと：'+p.comment;outer.append(comment)}
  el.append(outer,end);papers.append(el);flyers.push(el);
  let start=null;
  el.addEventListener('pointerdown',e=>{if(e.button!==0)return;topZ++;el.style.zIndex=topZ;start={x:e.clientX,y:e.clientY,l:el.offsetLeft,t:el.offsetTop,drag:false};el.setPointerCapture(e.pointerId)});
@@ -415,6 +463,9 @@ products.forEach(p=>{
 function openProduct(p){
  if(p.hidden && !secretFound){secretFound=true;showToast('✨ お宝チラシを発見！');playFX('discover')}
  dialog.classList.remove('is-back');
+ dialog.classList.toggle('has-official-ad',!!p.officialWidget);
+ const commentNode=document.getElementById('front-comment');
+ commentNode.hidden=!p.comment;commentNode.textContent=p.comment?'UG/CORPOのひとこと：『'+p.comment+'』':'';
  for(const [id,value] of [['front-category',p.category],['front-icon',p.icon],['front-title',p.title],['front-description',p.short],['back-title',p.title+' のメモ'],['back-description',p.back]])document.getElementById(id).textContent=value;
  const ul=document.getElementById('back-list');ul.replaceChildren();
  p.notes.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.append(li)});
@@ -423,7 +474,11 @@ function openProduct(p){
    if(!p[k]||!/^https:\/\//i.test(p[k]))continue;
    const a=document.createElement('a');a.href=p[k];a.target='_blank';a.rel='noopener noreferrer sponsored';a.textContent=label;a.className=cls;links.append(a);count++;
  }
- document.getElementById('links-note').hidden=count>0;
+ document.getElementById('links-note').hidden=count>0 || !!p.officialWidget;
+ for(const id of ['front-rakuten-widget','back-rakuten-widget']){
+   const host=document.getElementById(id);host.hidden=!p.officialWidget;
+   if(p.officialWidget)insertOfficialWidget(host);else host.replaceChildren();
+ }
  dialog.showModal();
 }
 document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>dialog.close()));
