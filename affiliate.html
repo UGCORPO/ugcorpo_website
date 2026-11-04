@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 12・画像付きチラシ】</title>
+<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 13・画像付きチラシ】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -293,17 +293,20 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 }
 
 
-/* VERSION 12：防塵キャップの写真付きチラシ（公式広告HTMLは無改変） */
+/* VERSION 13：楽天公式の画像付き広告・2商品対応（公式HTMLは無改変） */
+.flyer[data-id="bathrack"] .flyer-title{font-size:1.16rem}
+.flyer[data-id="bathrack"] .flyer-icon{font-size:2.2rem}
 .flyer[data-id="dustcap"]{background:#edf4ff;box-shadow:2px 8px 1px #2410061a,7px 17px 27px #21120b70,0 0 0 2px #4a73ac44}
 .flyer[data-id="dustcap"] .flyer-icon{font-size:2.15rem;line-height:1.1;margin:2px 0}
 .flyer[data-id="dustcap"] .flyer-title{font-size:1.13rem}
 .flyer[data-id="dustcap"] .flyer-copy{font-size:.67rem}
-.flyer-teaser-comment{display:block;font-weight:900;font-size:.71rem;line-height:1.5;color:#284969;margin-top:5px;padding:5px 7px;border-radius:6px;background:#ffffffb8}
+.flyer-teaser-comment{display:block;font-weight:500;font-size:.62rem;line-height:1.45;color:#66574d;margin-top:8px;padding:0;background:transparent}
 .flyer[data-id="dustcap"] .flyer-end{font-size:.61rem}
 .product-photo-head{display:block;color:#9d6c37;font-size:.76rem;font-weight:900;margin-top:12px}
-.product-comment{background:#eaf2ff;border-left:5px solid #4e78b1;padding:13px 14px;border-radius:0 9px 9px 0;font-weight:900;margin:12px 0 8px!important;font-size:clamp(1rem,3vw,1.2rem)!important}
+.product-comment{background:transparent;border:0;border-top:1px dashed #d9c5a7;padding:9px 0 0;margin:12px 0 8px!important;font-weight:500!important;color:#7b654e;font-size:clamp(.73rem,2vw,.82rem)!important;line-height:1.5!important}
 .rakuten-widget-shell{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-color:#c7b39a transparent;border:1px solid #e4d7c5;border-radius:10px;background:white;margin:11px 0 9px}
 .rakuten-widget-frame{border:0;width:530px;height:280px;display:block;background:#fff}
+.official-ad-fallback{display:inline-block;font-size:.77rem;color:#8a2822;text-decoration:underline;text-underline-offset:3px;line-height:1.65;margin-bottom:4px}
 .official-ad-note{font-size:.72rem!important;color:#80654b;margin:4px 0 6px!important;line-height:1.5!important}
 #detail.has-official-ad{width:min(600px,calc(100vw - 22px));max-height:92dvh}
 #detail.has-official-ad .paper-modal{height:min(690px,86dvh);min-height:440px}
@@ -315,6 +318,8 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 #detail.has-official-ad .memo-list{font-size:.85rem;line-height:1.8}
 @media(max-width:760px){
   .flyer[data-id="dustcap"] .flyer-icon{font-size:1.6rem}
+  .flyer[data-id="bathrack"] .flyer-title{font-size:.88rem}
+  .flyer[data-id="bathrack"] .flyer-icon{font-size:1.55rem}
   .flyer[data-id="dustcap"] .flyer-title{font-size:.87rem}
   .flyer[data-id="dustcap"] .flyer-copy{font-size:.58rem}
   .flyer-teaser-comment{font-size:.58rem;padding:3px 4px}
@@ -329,7 +334,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 11</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 12.1</div>
  <h1>ちゃぶ台のチラシ屋さん</h1>
  <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり。気になるチラシは手に取って裏まで見てみてね。</p>
  <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
@@ -392,7 +397,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <div class="paper-modal"><div class="paper-modal-inner">
    <section class="paper-face front">
     <div><div class="modal-top"><span class="modal-kicker" id="front-category"></span><button class="close" type="button" data-close aria-label="閉じる">×</button></div>
-    <div class="modal-icon" id="front-icon"></div><h2 id="front-title"></h2><p id="front-description"></p><p class="product-comment" id="front-comment" hidden></p><div id="front-rakuten-widget" hidden></div></div>
+    <div class="modal-icon" id="front-icon"></div><h2 id="front-title"></h2><p id="front-description"></p><div id="front-rakuten-widget" hidden></div><p class="product-comment" id="front-comment" hidden></p></div>
     <div class="modal-buttons"><button type="button" data-flip>↻ チラシの裏を見る</button><button type="button" data-close>机に戻す</button></div>
    </section>
    <section class="paper-face back">
@@ -409,26 +414,39 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 
 // 楽天アフィリエイト提供の「画像とテキスト」HTMLは編集せず、独立したフレーム内で表示します。
 const officialDustCapHtml = String.raw`<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/59235df3.6c94da3e.59235df4.78cce264/?me_id=1438246&item_id=10000034&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fmorely%2Fcabinet%2Fmain_img%2Fimg033.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">【 5個セット 】 Type-C 充電ポート カバー USB-C キャップ コネクタカバー シリコンキャップ 紛失防止 防塵 防水 タイプC キャップ type-c カバー Type-c ダストプラグ iPhone15 16 17 17e Android 防塵キャップ スマホ タブレット 充電口 保護カバー</a><br><span >価格：698円～（税込、送料別)</span> <span style="color:#BBB">(2026/11/4時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>`;
-function insertOfficialWidget(host){
+const officialBathRackHtml = String.raw`<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/5923211a.ac1b17af.59232121.26058d61/?me_id=1400681&item_id=10000088&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fhosky%2Fcabinet%2Fchanpin%2F1167-basurack2-01.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">＼開始4時間☆P2+10％OFF／バスルームラック バスラック シャンプーラック 【2個】 浴室ラック 錆びない フック付き シャワーラック 2段 壁面収納 アルミ カビ防止 収納 収納棚 穴開け不要 大容量 水切り おしゃれ シンプル お風呂場 キッチン 洗面所 送料無料</a><br><span >価格：3,590円（税込、送料別)</span> <span style="color:#BBB">(2026/11/4時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>`;
+// The vendor-provided ad HTML is unchanged; only the wrapper is responsive.
+const OFFICIAL_ADS = {
+  dustcap: {html:officialDustCapHtml, label:'Type-C防塵キャップ',
+    fallback:'https://hb.afl.rakuten.co.jp/ichiba/59235df3.6c94da3e.59235df4.78cce264/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmorely%2Fdust-proof-cap%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D'},
+  bathrack: {html:officialBathRackHtml, label:'バスルームラック',
+    fallback:''}
+};
+// Correct URL for fallback, copied from first ad link (avoid a stale legacy link).
+OFFICIAL_ADS.bathrack.fallback = new DOMParser().parseFromString(officialBathRackHtml, 'text/html').querySelector('a[href]').href;
+function insertOfficialWidget(host, productId){
+ const ad=OFFICIAL_ADS[productId];
  host.replaceChildren();
+ if(!ad)return;
  const label=document.createElement('span');label.className='product-photo-head';label.textContent='楽天市場の商品画像・公式広告（PR）';
  const scroll=document.createElement('div');scroll.className='rakuten-widget-shell';
  const iframe=document.createElement('iframe');iframe.className='rakuten-widget-frame';
- iframe.title='楽天アフィリエイト：Type-C防塵キャップ（画像とテキスト）';
+ iframe.title='楽天アフィリエイト：'+ad.label+'（画像とテキスト）';
  iframe.setAttribute('sandbox','allow-popups allow-popups-to-escape-sandbox');
  iframe.setAttribute('loading','eager');
- iframe.srcdoc='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=530"></head><body style="margin:0">'+officialDustCapHtml+'</body></html>';
+ iframe.srcdoc='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=530"></head><body style="margin:0">'+ad.html+'</body></html>';
  scroll.append(iframe);
- const note=document.createElement('p');note.className='official-ad-note';note.textContent='楽天の公式広告です。スマホでは画像部分を横へスクロールできます。';
- host.append(label,scroll,note);
+ const note=document.createElement('p');note.className='official-ad-note';note.textContent='楽天の公式広告です。画像が出ない場合は広告ブロックの影響が考えられます。';
+ const fallback=document.createElement('a');fallback.className='official-ad-fallback';fallback.href=ad.fallback;
+ fallback.target='_blank';fallback.rel='nofollow sponsored noopener';fallback.textContent='画像が見えない場合も、楽天市場の商品詳細はこちら ↗';
+ host.append(label,scroll,note,fallback);
 }
-
 const products = [
  {id:'secret',category:'ひみつの掘り出し物',icon:'✨',title:'金色のチラシ',short:'ほかの紙の下に隠れていた秘密のメモ。',back:'おめでとう！ ちゃぶ台に隠されたチラシを発見。ここは将来『本日の掘り出し物』を紹介する特別枠にできます。',notes:['チラシを動かして見つけたね！','商品紹介はこれから追加予定','実際の割引や特典を示すものではありません'],paper:'#f8d17c',x:'42%',y:'37%',angle:'5deg',z:2,xm:'47%',ym:'38%',rm:'5deg',rakuten:null,amazon:null,hidden:true},
  {id:'measure',category:'現場の道具',icon:'📐',title:'レーザー距離計',short:'現場でサッと寸法チェック。',back:'測りたい場所へすばやく合わせて、距離を確認できるのが魅力。',notes:['持ち歩きやすさをチェック','屋外での表示の見やすさに注目','実機レビューはこれから'],paper:'#fff0ce',x:'10%',y:'22%',angle:'-15deg',z:5,xm:'14%',ym:'21%',rm:'-14deg',rakuten:null,amazon:null},
  {id:'mouse',category:'PC・ガジェット',icon:'🖱️',title:'作業用マウス',short:'PC作業を気持ちよくする相棒。',back:'CADや事務作業の操作性は、マウスの形やクリック感で大きく変わります。',notes:['握り心地と重さを比較','ボタン配置をチェック','実機レビューはこれから'],paper:'#dceffc',x:'33%',y:'18%',angle:'12deg',z:4,xm:'49%',ym:'20%',rm:'11deg',rakuten:null,amazon:null},
- {id:'bathrack',category:'【PR】浴室収納',icon:'🛁',title:'バスルームラック',short:'シャンプーボトルや浴室小物の収納を見直したい人へ。',back:'楽天市場のバスルームラックをご紹介。浴室のボトル類をまとめる収納アイテムです。商品の詳細・対応する設置方法はリンク先で確認してください。',notes:['楽天市場の商品紹介（アフィリエイト広告）です','購入前にサイズ・取付方法・耐荷重を確認','価格・在庫・配送条件は楽天の商品ページで確認','使用感を実際に検証したレビューではありません'],paper:'#ffdecb',x:'54%',y:'26%',angle:'-10deg',z:6,xm:'27%',ym:'42%',rm:'-12deg',rakuten:"https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9",amazon:null},
- {id:'dustcap',category:'【PR】スマホ小物',icon:'🔌',title:'Type-C 防塵キャップ',short:'充電口に差し込んでホコリの侵入を抑える、小さな端子カバー。',comment:'スマホにもパンツを履かせてください',back:'USB Type-C端子に差し込む、シリコン製の防塵キャップです。スマートフォンやタブレットなどの使っていない充電口を、ほこりやごみから守りたいときに使える小物。充電するときは取り外して使います。',notes:['5個セットの商品です','USB Type-C端子向け。端子の形状・機種への対応を確認','「防水」の表記があっても、端末本体の防水性能を保証するものではありません','掲載時の価格：698円～（2026年11月4日・税込、送料別）。最新価格は楽天市場で確認','個人的なひとことです。実機使用レビューではありません'],paper:'#e9f2ff',x:'69%',y:'39%',angle:'-7deg',z:10,xm:'50%',ym:'64%',rm:'6deg',rakuten:null,amazon:null,officialWidget:true},
+ {id:'bathrack',category:'【PR】浴室収納',icon:'🛁',title:'バスルームラック',short:'浴室のボトルや小物をすっきりまとめる、2個セットの収納ラック。',back:'楽天市場で紹介されている、浴室用の壁面収納ラック2個セット。シャンプーボトルなどをまとめて置けるタイプです。商品説明にはフック付き・穴あけ不要と記載されています。取り付け面や耐荷重など、設置条件を購入前に確認してください。',notes:['壁面に設置する収納ラックの2個セット','シャンプーなどをまとめる浴室収納向け','取付方法・設置面・耐荷重などは商品ページで確認','掲載時価格：3,590円（2026年11月4日・税込、送料別）。最新価格は楽天市場で確認'],comment:'よその家は磁石が付くんですね・・・',paper:'#ffdecb',x:'54%',y:'26%',angle:'-10deg',z:6,xm:'27%',ym:'42%',rm:'-12deg',rakuten:null,amazon:null,officialWidget:true},
+ {id:'dustcap',category:'【PR】スマホ小物',icon:'🔌',title:'Type-C 防塵キャップ',short:'充電口に差し込んでホコリの侵入を抑える、小さな端子カバー。',comment:'スマホにもパンツを履かせてください',back:'USB Type-C端子に差し込む、シリコン製の防塵キャップです。スマートフォンやタブレットなどの使っていない充電口を、ほこりやごみから守りたいときに使える小物。充電するときは取り外して使います。',notes:['5個セットの商品です','USB Type-C端子向け。端子の形状・機種への対応を確認','「防水」の表記があっても、端末本体の防水性能を保証するものではありません','掲載時の価格：698円～（2026年11月4日・税込、送料別）。最新価格は楽天市場で確認'],paper:'#e9f2ff',x:'69%',y:'39%',angle:'-7deg',z:10,xm:'50%',ym:'64%',rm:'6deg',rakuten:null,amazon:null,officialWidget:true},
  {id:'arm',category:'デスク周り',icon:'🖥️',title:'モニターアーム',short:'机をもっと広く使いたい。',back:'モニターの位置調節がしやすく、作業スペースもすっきりするアイテム。',notes:['耐荷重と対応サイズ','クランプと机の相性','実機レビューはこれから'],paper:'#e6f4de',x:'23%',y:'47%',angle:'9deg',z:7,xm:'54%',ym:'43%',rm:'12deg',rakuten:null,amazon:null},
  {id:'light',category:'気になる小物',icon:'🔦',title:'小型ライト',short:'暗い場所の作業を明るく。',back:'屋内外で使える携帯ライト。明るさとバッテリーの持ちを比べたい商品です。',notes:['明るさと照射範囲','充電方法と持ち時間','実機レビューはこれから'],paper:'#eee2fa',x:'53%',y:'48%',angle:'-14deg',z:8,xm:'17%',ym:'63%',rm:'-9deg',rakuten:null,amazon:null}
 ];
@@ -477,7 +495,7 @@ function openProduct(p){
  document.getElementById('links-note').hidden=count>0 || !!p.officialWidget;
  for(const id of ['front-rakuten-widget','back-rakuten-widget']){
    const host=document.getElementById(id);host.hidden=!p.officialWidget;
-   if(p.officialWidget)insertOfficialWidget(host);else host.replaceChildren();
+   if(p.officialWidget)insertOfficialWidget(host,p.id);else host.replaceChildren();
  }
  dialog.showModal();
 }
