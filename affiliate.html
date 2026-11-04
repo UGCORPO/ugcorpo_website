@@ -427,7 +427,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 14</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 14.2</div>
  <h1>ちゃぶ台のチラシ屋さん</h1>
  <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり。気になるチラシは手に取って裏まで見てみてね。</p>
  <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
@@ -462,7 +462,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
       <span class="fan-top">涼</span><span class="fan-handle"></span>
    </button>
  <div class="block-layer" id="blockLayer" aria-label="畳に置かれた三角や四角の積み木10個。つかんで動かせます"></div>
- <div class="zabuton" aria-hidden="true"><span>座布団</span></div>
+ <div class="zabuton" aria-hidden="true"></div>
  <button class="cat" id="cat" type="button" aria-label="歩いている看板猫をなでる" title="猫をなでる 🐾">
    <span class="cat-bubble" id="catBubble" aria-hidden="true">にゃ〜♪</span>
    <svg class="cat-svg" viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -711,6 +711,7 @@ tea.addEventListener('click',()=>{
 let previousWind = 1;
 fan.addEventListener('click',()=>{
  if(dialog.open||activeDrag)return;
+ wakeBlocks();
  fan.classList.remove('fan-wave');void fan.offsetWidth;fan.classList.add('fan-wave');
  previousWind = Math.random() < .75 ? -previousWind : previousWind;
  flyers.forEach(el=>{
@@ -749,7 +750,7 @@ cat.addEventListener('click',()=>{
  catPets++;
  cat.classList.remove('cat-pet');void cat.offsetWidth;cat.classList.add('cat-pet');
  catSay(catPets%3===0?'ゴロゴロ…♡':'にゃ〜♪');
- showToast('看板猫が喜んでいるよ 🐾');playFX('meow');
+ showToast('うちの猫がち。ーるを欲しがってる 🐾');playFX('meow');
 });
 function mischief(){
  if(dialog.open||activeDrag)return;
@@ -831,12 +832,12 @@ function newBlock(spec){
  node.tabIndex=0;node.setAttribute('role','button');
  node.setAttribute('aria-label',`畳の${spec.shape==='triangle'?'三角':spec.shape==='long'?'長い四角':spec.shape==='square'?'正方形':spec.shape==='diamond'?'ひし形':'四角'}の積み木。ドラッグで積み直せます`);
  blockLayer.appendChild(node);
- const b={node,spec,x:0,y:0,w:0,h:0,vertices:[],angle:0,vx:0,vy:0,va:0,held:false,mass:1,im:1,ii:0,ground:'',previousBottom:0};
+ const b={node,spec,x:0,y:0,w:0,h:0,vertices:[],angle:0,vx:0,vy:0,va:0,held:false,mass:1,im:1,ii:0,ground:'',previousBottom:0,sleeping:false,quiet:0};
  let pointer=null;
  node.addEventListener('pointerdown',e=>{
   if(e.button!==0||dialog.open)return;
   e.stopPropagation();e.preventDefault();
-  b.held=true;b.vx=0;b.vy=0;b.va=0;
+  wakeBlocks();b.held=true;b.vx=0;b.vy=0;b.va=0;
   pointer={id:e.pointerId,x:e.clientX,y:e.clientY,px:b.x,py:b.y,t:performance.now()};
   node.classList.add('dragging');node.style.zIndex='100';node.setPointerCapture(e.pointerId);
  });
@@ -866,7 +867,7 @@ function newBlock(spec){
    else return;
    b.x=clampBlock(b.x,b.w/2,scene.clientWidth-b.w/2);
    b.y=clampBlock(b.y,b.h/2,scene.clientHeight-b.h/2);
-   b.vx=0;b.vy=0;paintBlock(b);e.preventDefault();
+   wakeBlocks();b.vx=0;b.vy=0;paintBlock(b);e.preventDefault();
  });
  return b;
 }
@@ -890,7 +891,7 @@ function resetBlocks(announce=false){
   b.x=clampBlock(off*s.w,b.w/2+3,s.w-b.w/2-3);
   b.y=s.floorY-b.h/2-18-sp.lift*(s.w<760?41:56);
   b.angle=sp.shape==='diamond'?.19:(i%2===0?-.14:.12);
-  b.vx=b.vy=b.va=0;b.held=false;
+  b.vx=b.vy=b.va=0;b.held=false;b.sleeping=false;b.quiet=0;
   paintBlock(b);
  });
  if(announce)showToast('畳の上に積み木10個を並べ直したよ！ ▲ ■ ▬ ◆');
@@ -922,37 +923,77 @@ function sat(a,b){
  if((b.x-a.x)*normal.x+(b.y-a.y)*normal.y<0)normal={x:-normal.x,y:-normal.y};
  return {penetration,n:normal,va,vb};
 }
+// ぶつかった面の中央を接触点にする。平らな辺の1角だけに力をかけない。
+function faceCenter(verts,n,sign){
+ const dots=verts.map(v=>v.x*n.x+v.y*n.y);
+ const tip=sign>0?Math.max(...dots):Math.min(...dots);
+ const spanX=Math.max(...verts.map(v=>v.x))-Math.min(...verts.map(v=>v.x));
+ const tolerance=Math.min(10,Math.max(3,spanX*.10));
+ const near=verts.filter((v,i)=>Math.abs(dots[i]-tip)<tolerance);
+ return {x:near.reduce((sum,v)=>sum+v.x,0)/near.length,
+         y:near.reduce((sum,v)=>sum+v.y,0)/near.length};
+}
+function wakeBlocks(){
+ // ブロックを触ったときは積み重ねたブロックも再び動けるようにする。
+ for(const b of blockBodies){b.sleeping=false;b.quiet=0;}
+}
 function solvePair(a,b){
  const result=sat(a,b);if(!result)return;
  const {penetration,n,va,vb}=result;
- const imA=a.held?0:a.im,imB=b.held?0:b.im;
+ if(a.sleeping&&b.sleeping)return;
+ // 静止した山に強く当たったときだけ目を覚ます。
+ const relativeSpeed=Math.hypot(a.vx-b.vx,a.vy-b.vy);
+ if(relativeSpeed>135||penetration>5){
+   if(a.sleeping){a.sleeping=false;a.quiet=0;}
+   if(b.sleeping){b.sleeping=false;b.quiet=0;}
+ }
+ const imA=(a.held||a.sleeping)?0:a.im,imB=(b.held||b.sleeping)?0:b.im;
  const total=imA+imB;if(!total)return;
  const depth=Math.max(0,penetration-.4)/total*.77;
  a.x-=n.x*depth*imA;a.y-=n.y*depth*imA;
  b.x+=n.x*depth*imB;b.y+=n.y*depth*imB;
  // 接触点を支持頂点から推定する。角の接触で回転が生まれる。
- const pa=va.reduce((best,v)=>v.x*n.x+v.y*n.y>best.x*n.x+best.y*n.y?v:best,va[0]);
- const pb=vb.reduce((best,v)=>v.x*n.x+v.y*n.y<best.x*n.x+best.y*n.y?v:best,vb[0]);
+ const pa=faceCenter(va,n,1);
+ const pb=faceCenter(vb,n,-1);
  const contact={x:(pa.x+pb.x)/2,y:(pa.y+pb.y)/2};
  const ra={x:contact.x-a.x,y:contact.y-a.y};const rb={x:contact.x-b.x,y:contact.y-b.y};
  const cross=(r,v)=>r.x*v.y-r.y*v.x;
  const velA={x:a.vx-a.va*ra.y,y:a.vy+a.va*ra.x};
  const velB={x:b.vx-b.va*rb.y,y:b.vy+b.va*rb.x};
  const rv={x:velB.x-velA.x,y:velB.y-velA.y};
- const vn=rv.x*n.x+rv.y*n.y;if(vn>=0)return;
+ const vn=rv.x*n.x+rv.y*n.y;
+ // 積み木の面が広く重なっている場合、摩擦と接触面の安定性を再現。
+ // 一点の接触誤差で横に滑ったり小刻みに回転するのを防ぐ。
+ if(Math.abs(n.y)>.84){
+   const low=a.y>b.y?a:b, high=low===a?b:a;
+   const topEdge=horizontalEdge(low,'top'),footEdge=horizontalEdge(high,'bottom');
+   if(topEdge&&footEdge&&Math.abs(topEdge.y-footEdge.y)<8&&
+      high.x>topEdge.minX+1&&high.x<topEdge.maxX-1 &&
+      Math.abs(high.vy-low.vy)<95){
+     const overlap=Math.min(topEdge.maxX,footEdge.maxX)-Math.max(topEdge.minX,footEdge.minX);
+     if(overlap>Math.min(topEdge.maxX-topEdge.minX,footEdge.maxX-footEdge.minX)*.32){
+       for(const k of [low,high])if(!k.held&&!k.sleeping){
+         k.vx*=.83;k.va*=.73;
+         const rest=nearestRestAngle(k);
+         if(rest.error<.13)k.angle+=rest.delta*.12;
+       }
+     }
+   }
+ }
+ if(vn>=0)return;
  const raN=cross(ra,n),rbN=cross(rb,n);
- const denom=total+raN*raN*(a.held?0:a.ii)+rbN*rbN*(b.held?0:b.ii);
+ const denom=total+raN*raN*imA/a.im*a.ii+rbN*rbN*imB/b.im*b.ii;
  if(denom<=0)return;
  const impulse=-(1+.035)*vn/denom;
  const ix=impulse*n.x,iy=impulse*n.y;
- if(!a.held){a.vx-=ix*imA;a.vy-=iy*imA;a.va-=cross(ra,{x:ix,y:iy})*a.ii}
- if(!b.held){b.vx+=ix*imB;b.vy+=iy*imB;b.va+=cross(rb,{x:ix,y:iy})*b.ii}
+ if(imA){a.vx-=ix*imA;a.vy-=iy*imA;a.va-=cross(ra,{x:ix,y:iy})*a.ii}
+ if(imB){b.vx+=ix*imB;b.vy+=iy*imB;b.va+=cross(rb,{x:ix,y:iy})*b.ii}
  // 摩擦力：積み木がぶつかっても、無限に横滑りしないように。
  const tx=-n.y,ty=n.x;
  const vt=rv.x*tx+rv.y*ty;
  const tangential=clampBlock(-vt/Math.max(.001,denom),-impulse*.44,impulse*.44);
- if(!a.held){a.vx-=tangential*tx*imA;a.vy-=tangential*ty*imA}
- if(!b.held){b.vx+=tangential*tx*imB;b.vy+=tangential*ty*imB}
+ if(imA){a.vx-=tangential*tx*imA;a.vy-=tangential*ty*imA}
+ if(imB){b.vx+=tangential*tx*imB;b.vy+=tangential*ty*imB}
 }
 // 安定しやすい向き：四角は底辺、ひし形は辺、三角は底辺か斜辺で着地する。
 function angleDelta(target,current){
@@ -970,7 +1011,7 @@ function nearestRestAngle(b){
  return {delta:best,error:err};
 }
 function solveSurfaces(b,s,dt,firstPass){
- if(b.held)return;
+ if(b.held||b.sleeping)return;
  const vs=vectors(b),bottom=Math.max(...vs.map(v=>v.y));
  const touching=bottom>=s.floorY-.5;
  if(touching){
@@ -989,10 +1030,11 @@ function solveSurfaces(b,s,dt,firstPass){
      b.vx*=.76;
      b.va*=.972;
      const rest=nearestRestAngle(b);
-     if(rest.error<.12 && Math.abs(b.va)<.35 && Math.abs(b.vy)<35){
-       b.angle+=rest.delta*.28;
-       b.va*=.72;
-       if(Math.abs(rest.delta)<.014 && Math.abs(b.va)<.05){b.angle+=rest.delta;b.va=0;}
+     if(rest.error<.15 && Math.abs(b.va)<2.5 && Math.abs(b.vy)<140){
+       // 広い底面で支えているときは、接地点の誤差で回転し続けないようにする。
+       b.angle+=rest.delta*.32;
+       b.va*=.48;
+       if(Math.abs(rest.delta)<.013 && Math.abs(b.va)<.09){b.angle+=rest.delta;b.va=0;}
      }
      if(Math.abs(b.vx)<.9)b.vx=0;
    }
@@ -1002,10 +1044,56 @@ function solveSurfaces(b,s,dt,firstPass){
  if(b.x+half>s.w){b.x=s.w-half;b.vx=-Math.abs(b.vx)*.15;b.va*=.9;}
  if(b.y-b.h*.5<0){b.y=b.h*.5;b.vy=Math.abs(b.vy)*.1;}
 }
+// 目に見えない微振動を止めるための「静止」判定。
+// 地面、またはすでに静止した別の積み木の平らな面に接している時だけ静止できる。
+function horizontalEdge(b,side){
+ const pts=vectors(b);let result=null;
+ for(let i=0;i<pts.length;i++){
+   const p=pts[i],q=pts[(i+1)%pts.length];
+   const dx=Math.abs(p.x-q.x),dy=Math.abs(p.y-q.y);
+   if(dx<Math.max(12,b.w*.24)||dy>Math.max(4.5,dx*.075))continue;
+   const y=(p.y+q.y)/2;
+   if(!result||(side==='bottom'?y>result.y:y<result.y)){
+     result={y,minX:Math.min(p.x,q.x),maxX:Math.max(p.x,q.x)};
+   }
+ }
+ return result;
+}
+function supportingSurface(b,s){
+ const foot=horizontalEdge(b,'bottom');
+ if(!foot)return null; // 角で立っている積み木は寝かせない
+ if(Math.abs(foot.y-s.floorY)<6)return {y:s.floorY};
+ for(const other of blockBodies){
+   if(other===b||other.held||!other.sleeping)continue;
+   const top=horizontalEdge(other,'top');
+   if(!top||Math.abs(foot.y-top.y)>7)continue;
+   const left=Math.max(foot.minX,top.minX),right=Math.min(foot.maxX,top.maxX);
+   const overlap=right-left;
+   // 重心が支持面から外れたら、そのまま重力で倒れる
+   if(overlap>Math.min(foot.maxX-foot.minX,top.maxX-top.minX)*.25 &&
+      b.x>=top.minX+2 && b.x<=top.maxX-2)return {y:top.y};
+ }
+ return null;
+}
+function putBlocksToSleep(s,dt){
+ for(const b of blockBodies){
+   if(b.held||b.sleeping)continue;
+   const support=supportingSurface(b,s);
+   // 小さく震えているだけなら毎回の重力と押し戻しを停止する
+   if(support && Math.abs(b.vx)<32 && Math.abs(b.vy)<42 && Math.abs(b.va)<.24){
+      b.quiet+=dt;
+      if(b.quiet>.38){
+        const foot=horizontalEdge(b,'bottom');
+        b.y+=support.y-foot.y;
+        b.vx=b.vy=b.va=0;b.sleeping=true;b.quiet=0;
+      }
+   }else b.quiet=0;
+ }
+}
 function stepPhysics(dt){
  const s=surfaces();
  for(const b of blockBodies){
-  if(b.held)continue;
+  if(b.held||b.sleeping)continue;
   b.vy+=1150*dt;
   b.x+=b.vx*dt;b.y+=b.vy*dt;b.angle+=b.va*dt;
   b.vx*=Math.pow(.987,dt*60);b.va*=Math.pow(.996,dt*60);
@@ -1015,6 +1103,7 @@ function stepPhysics(dt){
   for(let i=0;i<blockBodies.length;i++)for(let j=i+1;j<blockBodies.length;j++)solvePair(blockBodies[i],blockBodies[j]);
   for(const b of blockBodies)solveSurfaces(b,s,dt,pass===0);
  }
+ putBlocksToSleep(s,dt);
  for(const b of blockBodies)paintBlock(b);
 }
 let accumulator=0;
