@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 9】</title>
+<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 11・楽天商品第1号】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -61,6 +61,7 @@ h1{font-size:clamp(1.65rem,4vw,2.6rem);margin:8px auto 10px}
 /* チラシは天板の上に置き、少し斜めに配置 */
 .paper-layer{position:absolute;z-index:8;inset:0;pointer-events:none}
 .flyer{position:absolute;left:var(--x);top:var(--y);width:234px;height:242px;padding:14px 14px 13px;border:1px solid #00000016;border-radius:4px;color:#342b26;background:var(--paper);box-shadow:2px 8px 1px #2410061a,7px 17px 27px #21120b70;transform:rotate(var(--rotation)) perspective(1100px) rotateX(8deg);z-index:var(--z);pointer-events:auto;touch-action:none;user-select:none;text-align:left;cursor:grab;display:flex;flex-direction:column;justify-content:space-between;transition:filter .18s,box-shadow .18s}
+.flyer[data-id="bathrack"]{box-shadow:2px 8px 1px #2410061a,7px 17px 27px #21120b70,0 0 0 2px #b94a3d42}
 .flyer:hover{filter:brightness(1.03);box-shadow:5px 18px 32px #140c096b}
 .flyer.dragging{cursor:grabbing;filter:brightness(1.05);box-shadow:10px 26px 35px #140c0988}
 .flyer:before{content:"";position:absolute;top:-8px;left:39%;width:57px;height:20px;transform:rotate(-3deg);background:#fff1c4b0;box-shadow:0 1px 2px #0003}
@@ -299,10 +300,10 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 10</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 11</div>
  <h1>ちゃぶ台のチラシ屋さん</h1>
  <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり。気になるチラシは手に取って裏まで見てみてね。</p>
- <div class="notice">試作ページ｜商品リンクはまだありません（掲載時はPR・広告を明示します）</div>
+ <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
 </section>
 <div class="toolbar" aria-label="和室での遊び方">
   <button id="reset" type="button">↺ チラシを散らかし直す</button>
@@ -356,7 +357,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <div class="ambient-light" aria-hidden="true"></div>
  <div class="scene-toast" id="sceneToast" role="status" aria-live="polite"></div>
 </div>
-<p class="room-foot">畳に散らばった10個の積み木をつかんで、積んだり崩したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※広告リンクは未設定です。</p>
+<p class="room-foot">畳に散らばった10個の積み木をつかんで、積んだり崩したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ バスルームラックのチラシには楽天市場への広告リンクがあります。そのほかのチラシは準備中です。</p>
 </main>
 <dialog id="detail" aria-label="チラシの商品紹介">
  <div class="paper-modal"><div class="paper-modal-inner">
@@ -368,19 +369,19 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
    <section class="paper-face back">
     <div><div class="modal-top"><span class="modal-kicker">裏面の手書きメモ</span><button class="close" type="button" data-close aria-label="閉じる">×</button></div>
     <h2 class="memo-title" id="back-title"></h2><p id="back-description"></p><ul class="memo-list" id="back-list"></ul></div>
-    <div><div class="modal-buttons" id="shop-links"></div><p class="placeholder" id="links-note">※ これは試作品です。商品リンクはまだ設置していません。</p>
+    <div><div class="modal-buttons" id="shop-links"></div><p class="placeholder" id="links-note">※ このチラシの商品リンクはまだ準備中です。</p>
     <div class="modal-buttons"><button type="button" data-flip>↶ 表に戻す</button><button type="button" data-close>机に戻す</button></div></div>
    </section>
  </div></div>
 </dialog>
 <script>
 'use strict';
-// 商品を増やすときは、ここにデータを追加。楽天・Amazonのリンクは正式なアフィリエイトURLを入れてください。
+// 商品のデータ。バスルームラックはユーザーが楽天アフィリエイトで生成したURL。ほかは準備中。
 const products = [
  {id:'secret',category:'ひみつの掘り出し物',icon:'✨',title:'金色のチラシ',short:'ほかの紙の下に隠れていた秘密のメモ。',back:'おめでとう！ ちゃぶ台に隠されたチラシを発見。ここは将来『本日の掘り出し物』を紹介する特別枠にできます。',notes:['チラシを動かして見つけたね！','商品紹介はこれから追加予定','実際の割引や特典を示すものではありません'],paper:'#f8d17c',x:'42%',y:'37%',angle:'5deg',z:2,xm:'47%',ym:'38%',rm:'5deg',rakuten:null,amazon:null,hidden:true},
  {id:'measure',category:'現場の道具',icon:'📐',title:'レーザー距離計',short:'現場でサッと寸法チェック。',back:'測りたい場所へすばやく合わせて、距離を確認できるのが魅力。',notes:['持ち歩きやすさをチェック','屋外での表示の見やすさに注目','実機レビューはこれから'],paper:'#fff0ce',x:'10%',y:'22%',angle:'-15deg',z:5,xm:'14%',ym:'21%',rm:'-14deg',rakuten:null,amazon:null},
  {id:'mouse',category:'PC・ガジェット',icon:'🖱️',title:'作業用マウス',short:'PC作業を気持ちよくする相棒。',back:'CADや事務作業の操作性は、マウスの形やクリック感で大きく変わります。',notes:['握り心地と重さを比較','ボタン配置をチェック','実機レビューはこれから'],paper:'#dceffc',x:'33%',y:'18%',angle:'12deg',z:4,xm:'49%',ym:'20%',rm:'11deg',rakuten:null,amazon:null},
- {id:'case',category:'便利グッズ',icon:'🧰',title:'収納ケース',short:'細かい道具やケーブルを整理。',back:'持ち運びや机の整理に便利なケース。中の仕切りや開閉のしやすさがポイント。',notes:['仕切りの数','耐久性とサイズ感','実機レビューはこれから'],paper:'#ffdecb',x:'54%',y:'26%',angle:'-10deg',z:6,xm:'27%',ym:'42%',rm:'-12deg',rakuten:null,amazon:null},
+ {id:'bathrack',category:'【PR】浴室収納',icon:'🛁',title:'バスルームラック',short:'シャンプーボトルや浴室小物の収納を見直したい人へ。',back:'楽天市場のバスルームラックをご紹介。浴室のボトル類をまとめる収納アイテムです。商品の詳細・対応する設置方法はリンク先で確認してください。',notes:['楽天市場の商品紹介（アフィリエイト広告）です','購入前にサイズ・取付方法・耐荷重を確認','価格・在庫・配送条件は楽天の商品ページで確認','使用感を実際に検証したレビューではありません'],paper:'#ffdecb',x:'54%',y:'26%',angle:'-10deg',z:6,xm:'27%',ym:'42%',rm:'-12deg',rakuten:"https://hb.afl.rakuten.co.jp/ichiba/5923211a.ac1b17af.59232121.26058d61/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhosky%2F1167-basurack2%2F&link_type=hybrid_url&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJoeWJyaWRfdXJsIiwic2l6ZSI6IjI0MHgyNDAiLCJuYW0iOjEsIm5hbXAiOiJyaWdodCIsImNvbSI6MSwiY29tcCI6ImRvd24iLCJwcmljZSI6MSwiYm9yIjoxLCJjb2wiOjEsImJidG4iOjEsInByb2QiOjAsImFtcCI6ZmFsc2V9",amazon:null},
  {id:'arm',category:'デスク周り',icon:'🖥️',title:'モニターアーム',short:'机をもっと広く使いたい。',back:'モニターの位置調節がしやすく、作業スペースもすっきりするアイテム。',notes:['耐荷重と対応サイズ','クランプと机の相性','実機レビューはこれから'],paper:'#e6f4de',x:'23%',y:'47%',angle:'9deg',z:7,xm:'54%',ym:'43%',rm:'12deg',rakuten:null,amazon:null},
  {id:'light',category:'気になる小物',icon:'🔦',title:'小型ライト',short:'暗い場所の作業を明るく。',back:'屋内外で使える携帯ライト。明るさとバッテリーの持ちを比べたい商品です。',notes:['明るさと照射範囲','充電方法と持ち時間','実機レビューはこれから'],paper:'#eee2fa',x:'53%',y:'48%',angle:'-14deg',z:8,xm:'17%',ym:'63%',rm:'-9deg',rakuten:null,amazon:null}
 ];
@@ -418,7 +419,7 @@ function openProduct(p){
  const ul=document.getElementById('back-list');ul.replaceChildren();
  p.notes.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.append(li)});
  const links=document.getElementById('shop-links');links.replaceChildren();let count=0;
- for(const [k,label,cls] of [['rakuten','楽天で見る','shop-rakuten'],['amazon','Amazonで見る','shop-amazon']]){
+ for(const [k,label,cls] of [['rakuten','楽天市場で'+p.title+'を見る','shop-rakuten'],['amazon','Amazonで'+p.title+'を見る','shop-amazon']]){
    if(!p[k]||!/^https:\/\//i.test(p[k]))continue;
    const a=document.createElement('a');a.href=p[k];a.target='_blank';a.rel='noopener noreferrer sponsored';a.textContent=label;a.className=cls;links.append(a);count++;
  }
