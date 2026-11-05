@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 14・写真が印刷されたチラシ】</title>
+<title>アフィリエイトコーナー｜UG/CORPO【ちゃぶ台 Version 14.3・積み木安定化】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -427,7 +427,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 14.2</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 14.3.2</div>
  <h1>ちゃぶ台のチラシ屋さん</h1>
  <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり。気になるチラシは手に取って裏まで見てみてね。</p>
  <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
@@ -729,7 +729,8 @@ fan.addEventListener('click',()=>{
    el.style.setProperty('--rm',parseFloat(el.style.getPropertyValue('--rotation'))+'deg');
    setTimeout(()=>el.classList.remove('windy'),820);
  });
- // 物理積み木にも風を送る。上向きの力が入るので、山が崩れたり跳ねたりする。
+ // 風で積み木を起こす（静止中の山も揺らせる）。
+ wakeBlocks();
  blockBodies.forEach(b=>{
    if(b.held)return;
    b.vx += (Math.random()-.5)*160 + previousWind*45;
@@ -832,7 +833,7 @@ function newBlock(spec){
  node.tabIndex=0;node.setAttribute('role','button');
  node.setAttribute('aria-label',`畳の${spec.shape==='triangle'?'三角':spec.shape==='long'?'長い四角':spec.shape==='square'?'正方形':spec.shape==='diamond'?'ひし形':'四角'}の積み木。ドラッグで積み直せます`);
  blockLayer.appendChild(node);
- const b={node,spec,x:0,y:0,w:0,h:0,vertices:[],angle:0,vx:0,vy:0,va:0,held:false,mass:1,im:1,ii:0,ground:'',previousBottom:0,sleeping:false,quiet:0};
+ const b={node,spec,x:0,y:0,w:0,h:0,vertices:[],angle:0,vx:0,vy:0,va:0,held:false,mass:1,im:1,ii:0,ground:'',previousBottom:0,sleeping:false,quiet:0,stackQuiet:0};
  let pointer=null;
  node.addEventListener('pointerdown',e=>{
   if(e.button!==0||dialog.open)return;
@@ -891,7 +892,7 @@ function resetBlocks(announce=false){
   b.x=clampBlock(off*s.w,b.w/2+3,s.w-b.w/2-3);
   b.y=s.floorY-b.h/2-18-sp.lift*(s.w<760?41:56);
   b.angle=sp.shape==='diamond'?.19:(i%2===0?-.14:.12);
-  b.vx=b.vy=b.va=0;b.held=false;b.sleeping=false;b.quiet=0;
+  b.vx=b.vy=b.va=0;b.held=false;b.sleeping=false;b.quiet=0;b.stackQuiet=0;
   paintBlock(b);
  });
  if(announce)showToast('畳の上に積み木10個を並べ直したよ！ ▲ ■ ▬ ◆');
@@ -935,7 +936,7 @@ function faceCenter(verts,n,sign){
 }
 function wakeBlocks(){
  // ブロックを触ったときは積み重ねたブロックも再び動けるようにする。
- for(const b of blockBodies){b.sleeping=false;b.quiet=0;}
+ for(const b of blockBodies){b.sleeping=false;b.quiet=0;b.stackQuiet=0;}
 }
 function solvePair(a,b){
  const result=sat(a,b);if(!result)return;
@@ -977,6 +978,30 @@ function solvePair(a,b){
          const rest=nearestRestAngle(k);
          if(rest.error<.13)k.angle+=rest.delta*.12;
        }
+     }
+   }
+ }
+ // 水平に積めた低速の面接触は、角のわずかな測定誤差から回転を増幅しない。
+ // ただし速い衝突・角の接触・せり出した積み方は通常の物理計算を続ける。
+ if(Math.abs(n.y)>.94 && relativeSpeed<70 && !a.held && !b.held){
+   const low=a.y>b.y?a:b, high=low===a?b:a;
+   const edgeTop=horizontalEdge(low,'top'),edgeBottom=horizontalEdge(high,'bottom');
+   if(edgeTop&&edgeBottom&&Math.abs(edgeTop.y-edgeBottom.y)<6){
+     const minX=Math.max(edgeTop.minX,edgeBottom.minX);
+     const maxX=Math.min(edgeTop.maxX,edgeBottom.maxX);
+     const width=Math.max(0,maxX-minX);
+     const supported=width>Math.min(edgeTop.maxX-edgeTop.minX,edgeBottom.maxX-edgeBottom.minX)*.4
+       && high.x>minX+2 && high.x<maxX-2;
+     if(supported && Math.abs(high.va)<.45 && Math.abs(low.va)<.45){
+       // 突き抜けない程度に位置を補正し、接触方向の速度を共有する。
+       const diff=edgeTop.y-edgeBottom.y;
+       if(diff<0)high.y+=diff*.55;
+       const supportVy=low.sleeping?0:low.vy;
+       if(high.vy>supportVy)high.vy=supportVy;
+       if(high.vy<supportVy-25)high.vy=supportVy-25;
+       high.va*=.62;
+       high.vx=(high.vx*.85+low.vx*.15);
+       return;
      }
    }
  }
@@ -1075,6 +1100,64 @@ function supportingSurface(b,s){
  }
  return null;
 }
+/* Version 14.3: 複数段の積み木の安定した「支持連鎖」を床から上へ計算。
+   下段がまだsleepingでないという理由だけで上段が揺れ続けるのを防ぐ。 */
+function stableBlockSupport(b,s,settled){
+ const bottom=horizontalEdge(b,'bottom');
+ if(!bottom)return null;
+ // 床への直接接地は支持点。
+ if(Math.abs(bottom.y-s.floorY)<5)return {y:s.floorY,base:null};
+ let best=null,bestGap=6;
+ for(const low of settled){
+   if(low===b||low.held||low.y<=b.y)continue;
+   const top=horizontalEdge(low,'top');
+   if(!top)continue;
+   const gap=Math.abs(bottom.y-top.y);
+   if(gap>bestGap)continue;
+   const minX=Math.max(bottom.minX,top.minX);
+   const maxX=Math.min(bottom.maxX,top.maxX);
+   const shared=maxX-minX;
+   if(shared<=Math.min(bottom.maxX-bottom.minX,top.maxX-top.minX)*.45)continue;
+   // 重心が下段の真上にないときは、無理に固定しない。
+   if(b.x<=minX+2||b.x>=maxX-2)continue;
+   bestGap=gap;best={y:top.y,base:low};
+ }
+ return best;
+}
+function stabilizeStackedBlocks(s,dt){
+ const settled=new Set();
+ // 下段が落ち着いていれば、その上も順番に支持される。
+ const bottomToTop=[...blockBodies].sort((a,b)=>b.y-a.y);
+ for(const b of bottomToTop){
+   if(b.held)continue;
+   const support=stableBlockSupport(b,s,settled);
+   if(!support){b.stackQuiet=0;continue;}
+   if(b.sleeping){settled.add(b);continue;}
+   const base=support.base;
+   const baseVy=base&&!base.sleeping?base.vy:0;
+   const baseVx=base&&!base.sleeping?base.vx:0;
+   const rest=nearestRestAngle(b);
+   const nearStill=Math.abs(b.vx-baseVx)<36 && Math.abs(b.vy-baseVy)<46 &&
+     Math.abs(b.va)<.32 && rest.error<.095;
+   if(!nearStill){b.stackQuiet=0;continue;}
+   const foot=horizontalEdge(b,'bottom');
+   // 接地面は少しずつ補正。空中で急に貼り付くことを避ける。
+   b.y+=(support.y-foot.y)*.65;
+   b.angle+=rest.delta*.28;
+   b.vy=baseVy;
+   b.vx=baseVx+(b.vx-baseVx)*.48;
+   b.va*=.38;
+   b.stackQuiet+=dt;
+   settled.add(b);
+   if(b.stackQuiet>.27){
+     const flatFoot=horizontalEdge(b,'bottom');
+     if(flatFoot)b.y+=support.y-flatFoot.y;
+     b.angle+=nearestRestAngle(b).delta; // 残る角度誤差を消す
+     b.vx=b.vy=b.va=0;
+     b.sleeping=true;b.quiet=0;b.stackQuiet=0;
+   }
+ }
+}
 function putBlocksToSleep(s,dt){
  for(const b of blockBodies){
    if(b.held||b.sleeping)continue;
@@ -1099,10 +1182,11 @@ function stepPhysics(dt){
   b.vx*=Math.pow(.987,dt*60);b.va*=Math.pow(.996,dt*60);
   b.vx=clampBlock(b.vx,-850,850);b.vy=clampBlock(b.vy,-850,850);b.va=clampBlock(b.va,-5,5);
  }
- for(let pass=0;pass<5;pass++){
+ for(let pass=0;pass<9;pass++){
   for(let i=0;i<blockBodies.length;i++)for(let j=i+1;j<blockBodies.length;j++)solvePair(blockBodies[i],blockBodies[j]);
   for(const b of blockBodies)solveSurfaces(b,s,dt,pass===0);
  }
+ stabilizeStackedBlocks(s,dt);
  putBlocksToSleep(s,dt);
  for(const b of blockBodies)paintBlock(b);
 }
