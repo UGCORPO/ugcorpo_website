@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>居間でこんな時間もいかが？｜UG/CORPO【アフィリエイト・Version 22】</title>
+<title>居間でこんな時間もいかが？｜UG/CORPO【アフィリエイト・Version 23】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -440,6 +440,29 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 .flyer[data-id="denonx580"] .flyer-title{font-size:1.05rem;line-height:1.16}
 .flyer[data-id="denonx580"] .flyer-teaser-comment{font-size:.51rem;line-height:1.25;-webkit-line-clamp:3}
 @media(max-width:760px){.flyer[data-id="denonx580"] .flyer-title{font-size:.78rem}.flyer[data-id="denonx580"] .flyer-teaser-comment{font-size:.46rem;line-height:1.18;-webkit-line-clamp:3}}
+
+/* VERSION 23 ─ 輪ゴム飛ばし。広告やチラシと完全に独立したミニゲーム */
+.toolbar #rubberMode{background:#f6e9c5;border-color:#a87439}
+.toolbar #rubberMode[aria-pressed="true"]{background:#77502d;color:#fff;border-color:#56351e}
+.rubber-hud{max-width:1200px;margin:0 auto 12px;padding:13px 16px 12px;background:#fff8e9;border:2px solid #b48a52;border-radius:15px;box-shadow:0 8px 20px #46301a22}
+.rubber-hud[hidden],.rubber-launcher[hidden],.rubber-mini-score[hidden]{display:none!important}
+.rubber-hud-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rubber-hud-head strong{color:#693f1e;font-size:1.02rem}
+.rubber-hud-head span{font-weight:900;font-size:.86rem;background:#f5dfac;color:#654221;padding:6px 10px;border-radius:18px}
+.rubber-hud p{margin:9px 0;font-size:.84rem;line-height:1.6;color:#70563f}
+.rubber-hud-buttons{display:flex;flex-wrap:wrap;gap:8px}
+.rubber-hud-buttons button{border:1px solid #b18e62;border-radius:22px;background:#fff;color:#634126;font-weight:800;padding:8px 14px;font-size:.82rem}
+.rubber-canvas{display:none;position:absolute;inset:0;width:100%;height:100%;z-index:15;pointer-events:none}
+.scene.rubber-active .rubber-canvas{display:block}
+.scene.rubber-active .wood-block{pointer-events:none!important}
+/* ゲーム中だけチラシを薄く表示。的が見やすくなり、商品リンクの誤操作も防ぐ。 */
+.scene.rubber-active .paper-layer{opacity:.25;filter:saturate(.58);transition:opacity .25s}
+.scene.rubber-active .flyer{pointer-events:none!important}
+.rubber-mini-score{position:absolute;z-index:16;left:9%;top:90%;padding:5px 11px;border-radius:22px;border:1px solid #9c7238;color:#57351b;background:#fff3d5ea;font-size:.81rem;font-weight:850;white-space:nowrap;pointer-events:none;box-shadow:0 3px 8px #0002}
+.rubber-launcher{position:absolute;z-index:16;width:100px;height:105px;border:0;border-radius:50%;background:transparent;touch-action:none;cursor:grab}
+.rubber-launcher:active{cursor:grabbing}
+.rubber-launcher:focus-visible{outline:3px dashed #ffc857;outline-offset:0}
+@media(max-width:760px){.rubber-launcher{width:80px;height:84px}.rubber-hud{margin:0 8px 10px;padding:11px}.rubber-hud-head{gap:6px}.rubber-hud-head strong{width:100%}.rubber-hud-head span{font-size:.75rem;padding:5px 7px}.rubber-hud p{font-size:.76rem}.rubber-mini-score{left:2%;top:91%;font-size:.72rem}}
 </style>
 </head>
 <body>
@@ -448,14 +471,15 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 22</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 23</div>
  <h1>居間でこんな時間もいかが？</h1>
- <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり。気になるチラシは手に取って裏まで見てみてね。</p>
+ <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり、輪ゴムで積み木倒しにも挑戦！気になるチラシは手に取って裏まで見てみてね。</p>
  <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
 </section>
 <div class="toolbar" aria-label="和室での遊び方">
   <button id="reset" type="button">↺ チラシを散らかし直す</button>
   <button id="resetBlocks" type="button">▦ 積み木を並べ直す</button>
+  <button id="rubberMode" type="button" aria-pressed="false">🎯 輪ゴム飛ばしで遊ぶ</button>
   <div class="time-switch" role="group" aria-label="和室の時間帯">
     <button type="button" class="time-btn is-active" data-time="auto" aria-pressed="true">自動</button>
     <button type="button" class="time-btn" data-time="morning" aria-pressed="false">朝</button>
@@ -463,8 +487,13 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
     <button type="button" class="time-btn" data-time="night" aria-pressed="false">夜</button>
   </div>
   <button id="soundToggle" type="button" aria-pressed="false">♪ 音 OFF</button>
-  <span>チラシを探す ／ 猫と遊ぶ ／ 畳で積み木を積む</span>
+  <span>チラシを探す ／ 猫と遊ぶ ／ 畳で積み木を積む ／ 輪ゴムを飛ばす</span>
 </div>
+<section class="rubber-hud" id="rubberHud" hidden aria-label="輪ゴム飛ばしチャレンジ" role="region">
+  <div class="rubber-hud-head"><strong>🎯 本日の輪ゴムチャレンジ</strong><span id="rubberScore" aria-live="polite">0点</span><span id="rubberShots">残り3発</span><span id="rubberBest">今日のベスト：0点</span></div>
+  <p>左下の輪ゴムを<strong>左へ引いて、上下で狙いを調整</strong>して離すと発射！積み木を3発で何個倒せるかな？ 猫には当たりません🐈 ／ キーボード：↑↓ 角度・←→ 強さ・Space 発射</p>
+  <div class="rubber-hud-buttons"><button type="button" id="rubberAgain">↺ もう一回遊ぶ</button><button type="button" id="rubberQuit">自由に遊ぶモードへ戻る</button></div>
+</section>
 <main>
 <div class="scene" id="scene" data-time="morning" aria-label="畳の上のちゃぶ台と商品チラシ、看板猫">
  <div class="wall"></div><div class="shoji left"></div><div class="shoji right"></div><div class="tatami"></div>
@@ -483,6 +512,9 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
       <span class="fan-top">涼</span><span class="fan-handle"></span>
    </button>
  <div class="block-layer" id="blockLayer" aria-label="畳に置かれた三角や四角の積み木10個。つかんで動かせます"></div>
+ <canvas class="rubber-canvas" id="rubberCanvas" aria-hidden="true"></canvas>
+ <div class="rubber-mini-score" id="rubberMiniScore" hidden aria-hidden="true">🎯 0点 ／ 残り3発</div>
+ <button type="button" class="rubber-launcher" id="rubberLauncher" hidden aria-label="輪ゴムを引っ張って離す。矢印キーで角度・強さ、スペースで発射" title="左下に引いて離す / 矢印キー + Spaceで発射"></button>
  <div class="zabuton" aria-hidden="true"></div>
  <button class="cat" id="cat" type="button" aria-label="歩いている看板猫をなでる" title="猫をなでる 🐾">
    <span class="cat-bubble" id="catBubble" aria-hidden="true">にゃ〜♪</span>
@@ -505,7 +537,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <div class="ambient-light" aria-hidden="true"></div>
  <div class="scene-toast" id="sceneToast" role="status" aria-live="polite"></div>
 </div>
-<p class="room-foot">畳に散らばった10個の積み木をつかんで、積んだり崩したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ 楽天市場への広告リンク付きチラシが11商品、準備中のチラシもあります。</p>
+<p class="room-foot">畳に散らばった10個の積み木をつかんで積んだり、輪ゴムチャレンジで倒したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ 楽天市場への広告リンク付きチラシが11商品、準備中のチラシもあります。</p>
 </main>
 <dialog id="detail" aria-label="チラシの商品紹介">
  <div class="paper-modal"><div class="paper-modal-inner">
@@ -1239,6 +1271,7 @@ function stepPhysics(dt){
  stabilizeStackedBlocks(s,dt);
  putBlocksToSleep(s,dt);
  for(const b of blockBodies)paintBlock(b);
+ if(rubberGame.active)stepRubber(dt);
 }
 let accumulator=0;
 function physicsFrame(time){
@@ -1249,6 +1282,306 @@ function physicsFrame(time){
  requestAnimationFrame(physicsFrame);
 }
 requestAnimationFrame(physicsFrame);
+
+/* =======================================================
+  Version 23 — 輪ゴム飛ばしチャレンジ
+  ・既存の積み木SAT物理を使う。別の物理エンジンは追加しない
+  ・輪ゴムはキャンバスだけで描画、広告リンクには触れない
+  ・猫やチラシとの衝突判定は一切行わない
+  ・3発制／日付ごとにローカルな自己ベストを保存
+======================================================= */
+const rubberModeButton=document.getElementById('rubberMode');
+const rubberHud=document.getElementById('rubberHud');
+const rubberLauncher=document.getElementById('rubberLauncher');
+const rubberCanvas=document.getElementById('rubberCanvas');
+const rubberCtx=rubberCanvas.getContext('2d');
+const rubberScoreLabel=document.getElementById('rubberScore');
+const rubberShotsLabel=document.getElementById('rubberShots');
+const rubberBestLabel=document.getElementById('rubberBest');
+const rubberMiniScore=document.getElementById('rubberMiniScore');
+const rubberGame={active:false,shots:3,score:0,best:0,dragging:false,dragId:null,dragPoint:null,
+  projectile:null,origin:[],power:.74,angle:-.20,anchor:{x:0,y:0},maxPull:70,roundEnded:false,savedBlocks:null};
+const rubberGravity=540;
+function rubberDay(){
+ const d=new Date(),pad=n=>String(n).padStart(2,'0');
+ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+}
+function rubberBestKey(){return 'ugcorpo-rubber-best-v1-'+rubberDay()}
+function readRubberBest(){try{return Number(localStorage.getItem(rubberBestKey()))||0}catch(e){return 0}}
+function updateRubberHud(){
+ rubberGame.best=Math.max(rubberGame.best,readRubberBest());
+ rubberScoreLabel.textContent=rubberGame.score+'点';
+ rubberShotsLabel.textContent='残り'+rubberGame.shots+'発';
+ rubberBestLabel.textContent='今日のベスト：'+rubberGame.best+'点';
+ rubberMiniScore.textContent='🎯 '+rubberGame.score+'点 ／ 残り'+rubberGame.shots+'発';
+}
+function saveRubberBest(){
+ if(rubberGame.score<=rubberGame.best)return;
+ rubberGame.best=rubberGame.score;
+ try{localStorage.setItem(rubberBestKey(),String(rubberGame.best))}catch(e){}
+ updateRubberHud();
+}
+function rubberPoint(e){const r=scene.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+function updateRubberSize(){
+ const w=scene.clientWidth,h=scene.clientHeight;
+ const ratio=Math.min(2,window.devicePixelRatio||1);
+ rubberCanvas.width=Math.round(w*ratio);rubberCanvas.height=Math.round(h*ratio);
+ rubberCtx.setTransform(ratio,0,0,ratio,0,0);
+ rubberGame.anchor={x:w*(w<650?.14:.15),y:h*.79};
+ rubberGame.maxPull=w<650?Math.min(49,w*.13):88;
+ rubberLauncher.style.left=(rubberGame.anchor.x-rubberLauncher.offsetWidth/2)+'px';
+ rubberLauncher.style.top=(rubberGame.anchor.y-rubberLauncher.offsetHeight/2)+'px';
+ drawRubber();
+}
+function rubberStage(){
+ // 床の上に二つの4段/3段タワーと、ひし形の的を並べる。
+ // 全て静止状態から始めるため、ゲーム開始前に物理演算が暴れない。
+ const s=surfaces(),w=s.w;
+ blockScale=w<760?clampBlock(w/680,.52,.76):clampBlock(w/1150,.84,1.05);
+ const baseX1=w*(w<650?.59:.61),baseX2=w*(w<650?.81:.82);
+ const mapping=[
+   {i:0,x:baseX1,base:null},   // 長方形（下段）
+   {i:1,x:baseX1,base:0},      // 正方形
+   {i:2,x:baseX1,base:1},      // 中段
+   {i:3,x:baseX1,base:2},      // 三角の屋根
+   {i:6,x:baseX2,base:null},   // 長方形（下段）
+   {i:7,x:baseX2,base:6},
+   {i:8,x:baseX2,base:7},
+   {i:5,x:baseX2,base:8},
+   {i:4,x:w*.42,base:null},
+   {i:9,x:w*.94,base:null}
+ ];
+ for(const item of mapping){
+   const b=blockBodies[item.i],sp=blockSpecs[item.i],dim=SHAPES[sp.shape];
+   b.w=Math.round(dim.w*blockScale);b.h=Math.round(dim.h*blockScale);
+   b.vertices=dim.vertices.map(([x,y])=>[x*b.w,y*b.h]);
+   b.node.style.width=b.w+'px';b.node.style.height=b.h+'px';
+   b.mass=b.w*b.h*(sp.shape==='triangle'||sp.shape==='diamond'?.5:1)/2400;
+   b.im=1/b.mass;b.ii=12/(b.mass*(b.w*b.w+b.h*b.h));
+   b.x=clampBlock(item.x,b.w/2+2,w-b.w/2-2);
+   b.y=item.base===null?s.floorY-b.h/2:blockBodies[item.base].y-(blockBodies[item.base].h+b.h)/2;
+   b.angle=0;b.vx=b.vy=b.va=0;b.held=false;b.sleeping=true;b.quiet=0;b.stackQuiet=0;
+   b.rubberOrigin={x:b.x,y:b.y,angle:b.angle};b.rubberHit=false;b.rubberDown=false;
+   paintBlock(b);
+ }
+}
+function beginRubberRound(){
+ rubberGame.projectile=null;rubberGame.dragging=false;rubberGame.dragPoint=null;
+ rubberGame.shots=3;rubberGame.score=0;rubberGame.roundEnded=false;rubberGame.best=readRubberBest();
+ rubberGame.angle=scene.clientWidth<650?0:-.20;rubberGame.power=.80;
+ rubberStage();updateRubberSize();updateRubberHud();
+}
+function switchRubberMode(on){
+ if(on===rubberGame.active)return;
+ rubberGame.active=on;
+ scene.classList.toggle('rubber-active',on);
+ rubberHud.hidden=!on;rubberLauncher.hidden=!on;rubberMiniScore.hidden=!on;
+ rubberModeButton.setAttribute('aria-pressed',String(on));
+ rubberModeButton.textContent=on?'🎯 輪ゴムゲーム中':'🎯 輪ゴム飛ばしで遊ぶ';
+ if(on){
+  // ゲームをやめた時はそれまでの自由な積み木の配置を戻す。
+  rubberGame.savedBlocks=blockBodies.map(b=>({x:b.x,y:b.y,angle:b.angle,vx:b.vx,vy:b.vy,va:b.va,sleeping:b.sleeping,quiet:b.quiet,stackQuiet:b.stackQuiet}));
+  beginRubberRound();
+  showToast('輪ゴムを左に引いて、上下で積み木を狙おう！🎯');
+  rubberLauncher.scrollIntoView({behavior:'smooth',block:'center'});
+ }else{
+  rubberGame.dragging=false;rubberGame.dragPoint=null;rubberGame.projectile=null;
+  if(rubberGame.savedBlocks)blockBodies.forEach((b,i)=>{Object.assign(b,rubberGame.savedBlocks[i]);paintBlock(b)});
+  rubberGame.savedBlocks=null;
+  rubberCtx.clearRect(0,0,rubberCanvas.width,rubberCanvas.height);
+  showToast('いつもの居間に戻ったよ 🍵');
+ }
+}
+rubberModeButton.addEventListener('click',()=>switchRubberMode(!rubberGame.active));
+document.getElementById('rubberQuit').addEventListener('click',()=>switchRubberMode(false));
+document.getElementById('rubberAgain').addEventListener('click',()=>{
+ if(!rubberGame.active)return;
+ beginRubberRound();showToast('積み木を積み直して、もう一勝負！🎯');
+});
+// 通常の積み木リセットに戻る時はゲームを終了。
+for(const id of ['resetBlocks','reset'])document.getElementById(id).addEventListener('click',()=>{if(rubberGame.active)switchRubberMode(false)},true);
+let rubberResizeTimer;
+window.addEventListener('resize',()=>{
+ if(!rubberGame.active)return;
+ clearTimeout(rubberResizeTimer);
+ rubberResizeTimer=setTimeout(()=>{
+  // 通常のリサイズ処理がブロックを再配置した後、ゲーム用の的を置き直す
+  beginRubberRound();showToast('画面サイズに合わせて、的を置き直したよ');
+ },245);
+});
+function rubberAimVelocity(){
+ if(rubberGame.dragging&&rubberGame.dragPoint){
+  const a=rubberGame.anchor,p=rubberGame.dragPoint;
+  const factor=scene.clientWidth<650?13.8:10.8;
+  return {vx:(a.x-p.x)*factor,vy:(a.y-p.y)*factor};
+ }
+ const speed=scene.clientWidth<650?650:890;
+ return {vx:Math.cos(rubberGame.angle)*speed*rubberGame.power,vy:Math.sin(rubberGame.angle)*speed*rubberGame.power};
+}
+function shootRubber(){
+ if(!rubberGame.active||rubberGame.projectile||rubberGame.shots<=0||dialog.open)return;
+ const v=rubberAimVelocity();
+ const power=Math.hypot(v.vx,v.vy);
+ if(power<90){showToast('もう少し引っ張ってみよう！');return}
+ rubberGame.projectile={x:rubberGame.anchor.x+14,y:rubberGame.anchor.y,vx:v.vx,vy:v.vy,life:2.4,expiresAt:performance.now()+3200,collidedAt:0,r:scene.clientWidth<650?6:9,blocked:new Set()};
+ rubberGame.shots--;rubberGame.roundEnded=false;updateRubberHud();playFX('tap');
+}
+rubberLauncher.addEventListener('pointerdown',e=>{
+ if(!rubberGame.active||rubberGame.shots===0||rubberGame.projectile||dialog.open)return;
+ if(e.pointerType==='mouse'&&e.button!==0)return;
+ e.preventDefault();e.stopPropagation();
+ rubberGame.dragging=true;rubberGame.dragId=e.pointerId;
+ rubberGame.dragPoint={...rubberGame.anchor};
+ rubberLauncher.setPointerCapture(e.pointerId);
+});
+rubberLauncher.addEventListener('pointermove',e=>{
+ if(!rubberGame.dragging||rubberGame.dragId!==e.pointerId)return;
+ e.preventDefault();
+ const p=rubberPoint(e),a=rubberGame.anchor,max=rubberGame.maxPull;
+ // プレイヤーは左・下に引く。指が場外に出ても操作を続けられる。
+ const dx=Math.min(0,p.x-a.x),dy=clampBlock(p.y-a.y,-max*.45,max);
+ const d=Math.hypot(dx,dy)||1,scale=Math.min(max,d)/d;
+ rubberGame.dragPoint={x:a.x+dx*scale,y:a.y+dy*scale};
+ drawRubber();
+});
+function releaseRubber(e,cancelled=false){
+ if(!rubberGame.dragging||rubberGame.dragId!==e.pointerId)return;
+ if(!cancelled)shootRubber();
+ rubberGame.dragging=false;rubberGame.dragId=null;rubberGame.dragPoint=null;drawRubber();
+}
+rubberLauncher.addEventListener('pointerup',e=>releaseRubber(e));
+rubberLauncher.addEventListener('pointercancel',e=>releaseRubber(e,true));
+rubberLauncher.addEventListener('keydown',e=>{
+ if(!rubberGame.active)return;
+ const k=e.key;
+ if(k==='ArrowUp')rubberGame.angle=Math.max(-1.18,rubberGame.angle-.09);
+ else if(k==='ArrowDown')rubberGame.angle=Math.min(.25,rubberGame.angle+.09);
+ else if(k==='ArrowLeft')rubberGame.power=Math.max(.25,rubberGame.power-.09);
+ else if(k==='ArrowRight')rubberGame.power=Math.min(1,rubberGame.power+.09);
+ else if(k===' '||k==='Enter')shootRubber();
+ else return;
+ e.preventDefault();drawRubber();
+});
+function pointInsideRubberPolygon(x,y,pts){
+ let inside=false;
+ for(let i=0,j=pts.length-1;i<pts.length;j=i++){
+  const a=pts[i],b=pts[j];
+  if((a.y>y)!==(b.y>y) && x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x)inside=!inside;
+ }
+ return inside;
+}
+function rubberIntersectsBlock(ball,b){
+ if(Math.abs(ball.x-b.x)>b.w*.8+ball.r||Math.abs(ball.y-b.y)>b.h*.8+ball.r)return false;
+ const vs=vectors(b);if(pointInsideRubberPolygon(ball.x,ball.y,vs))return true;
+ for(let i=0;i<vs.length;i++){
+  const a=vs[i],v=vs[(i+1)%vs.length],dx=v.x-a.x,dy=v.y-a.y;
+  const t=clampBlock(((ball.x-a.x)*dx+(ball.y-a.y)*dy)/Math.max(1,dx*dx+dy*dy),0,1);
+  const px=a.x+t*dx,py=a.y+t*dy;
+  if((ball.x-px)**2+(ball.y-py)**2<ball.r**2)return true;
+ }
+ return false;
+}
+function impactRubber(ball,b){
+ // 同じ輪ゴムが接触中に繰り返し加速させない。
+ if(ball.blocked.has(b))return;
+ ball.blocked.add(b);ball.collidedAt=performance.now();
+ const x=b.x,range=Math.max(scene.clientWidth*.095,48);
+ // 支え合う塔の同じ列だけを起こす。反対の塔は静止のままにする。
+ blockBodies.forEach(t=>{
+  if(Math.abs(t.x-x)>=range)return;
+  t.sleeping=false;t.quiet=0;t.stackQuiet=0;
+  // 同じ塔の積み木に衝撃を伝える。1個だけ動いて終わらないようにする。
+  if(t!==b && t.y<b.y+12){
+    const shock=clampBlock((b.y-t.y)/Math.max(26,b.h*3.5),.12,.7);
+    t.vx+=ball.vx*(.16+.20*shock)/Math.max(.8,t.mass);
+    t.vy-=55+shock*75;
+    t.va+=Math.sign(ball.vx)*(.40+shock*.7);
+  }
+ });
+ const mass=Math.max(.7,b.mass),v=Math.hypot(ball.vx,ball.vy);
+ b.vx+=ball.vx*.87/mass;
+ // 当たりの瞬間に小さく押し出し、塔が崩れるきっかけを作る。
+ b.x+=Math.sign(ball.vx)*Math.min(23,Math.abs(ball.vx)*.026);
+ b.vy+=ball.vy*.20/mass-150/mass;
+ b.va+=((ball.y-b.y)/Math.max(18,b.h))*(ball.vx/96)+(ball.x-b.x)/Math.max(25,b.w)*.8+Math.sign(ball.vx)*.85;
+ b.vx=clampBlock(b.vx,-750,750);b.vy=clampBlock(b.vy,-780,780);b.va=clampBlock(b.va,-6,6);
+ if(!b.rubberHit){b.rubberHit=true;rubberGame.score+=25;updateRubberHud()}
+ ball.vx*=-.24;ball.vy=-Math.abs(ball.vy)*.32-80;
+ ball.x-=9;ball.y-=4;
+ playFX('tap');
+}
+function stepRubber(dt){
+ if(!rubberGame.active)return;
+ const ball=rubberGame.projectile;
+ if(ball&&!dialog.open){
+  // 小刻みに進めて速い輪ゴムが積み木をすり抜けないようにする。
+  const n=Math.max(1,Math.ceil(Math.hypot(ball.vx,ball.vy)*dt/7));
+  for(let i=0;i<n;i++){
+   ball.x+=ball.vx*dt/n;ball.y+=ball.vy*dt/n;
+   ball.vy+=rubberGravity*dt/n;
+   ball.life-=dt/n;
+   for(const b of blockBodies){
+     if(!ball.blocked.has(b)&&rubberIntersectsBlock(ball,b)){impactRubber(ball,b);break}
+   }
+  }
+  if(ball.life<=0||performance.now()>ball.expiresAt || (ball.collidedAt&&performance.now()-ball.collidedAt>650) || ball.y>scene.clientHeight*.95||ball.x>scene.clientWidth+30||ball.x< -30)rubberGame.projectile=null;
+ }
+ // 移動/転倒の判定。命中後に別の積み木が崩れても得点になる。
+ blockBodies.forEach(b=>{
+  if(b.rubberDown||!b.rubberOrigin)return;
+  const r=b.rubberOrigin,dist=Math.hypot(b.x-r.x,b.y-r.y);
+  if(dist>Math.max(19,b.w*.3)||Math.abs(angleDelta(r.angle,b.angle))>.39){
+   b.rubberDown=true;rubberGame.score+=100;updateRubberHud();
+  }
+ });
+ if(rubberGame.shots===0&&!rubberGame.projectile&&!rubberGame.roundEnded){
+  rubberGame.roundEnded=true;saveRubberBest();
+  showToast('3発終了！ 合計'+rubberGame.score+'点 🏆 もう一度遊べるよ！');
+ }
+ drawRubber();
+}
+function drawRubber(){
+ if(!rubberGame.active)return;
+ const ctx=rubberCtx,w=scene.clientWidth,h=scene.clientHeight;
+ ctx.clearRect(0,0,w,h);
+ const a=rubberGame.anchor,p=rubberGame.dragPoint||{x:a.x,y:a.y};
+ ctx.save();
+ // 軽い影と木のフォークを描いて、「輪ゴムを引く場所」を表示。
+ ctx.lineCap='round';ctx.lineJoin='round';
+ ctx.strokeStyle='#4f2d17';ctx.lineWidth=9;
+ ctx.beginPath();ctx.moveTo(a.x,a.y+29);ctx.lineTo(a.x,a.y-8);ctx.moveTo(a.x,a.y-8);ctx.lineTo(a.x-15,a.y-27);ctx.moveTo(a.x,a.y-8);ctx.lineTo(a.x+15,a.y-27);ctx.stroke();
+ ctx.strokeStyle='#bc8249';ctx.lineWidth=5;
+ ctx.beginPath();ctx.moveTo(a.x,a.y+28);ctx.lineTo(a.x,a.y-8);ctx.moveTo(a.x,a.y-8);ctx.lineTo(a.x-15,a.y-27);ctx.moveTo(a.x,a.y-8);ctx.lineTo(a.x+15,a.y-27);ctx.stroke();
+ ctx.strokeStyle='#e1bd76';ctx.lineWidth=3.7;
+ ctx.beginPath();ctx.moveTo(a.x-15,a.y-27);ctx.lineTo(p.x,p.y-2);ctx.lineTo(a.x+15,a.y-27);ctx.stroke();
+ ctx.strokeStyle='#794a24';ctx.lineWidth=3;ctx.fillStyle='#f8dfab';
+ ctx.beginPath();ctx.ellipse(p.x,p.y,11,7,.3,0,Math.PI*2);ctx.fill();ctx.stroke();
+ if(rubberGame.shots>0&&!rubberGame.projectile){
+  const v=rubberAimVelocity();
+  if(rubberGame.dragging||document.activeElement===rubberLauncher){
+   ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();
+   for(let t=.09;t<2;t+=.095){
+    const x=a.x+14+v.vx*t,y=a.y+v.vy*t+.5*rubberGravity*t*t;
+    if(x<0||x>w||y<0||y>h*.95)break;
+    ctx.fillStyle='rgba(255,243,175,.83)';ctx.beginPath();ctx.arc(x,y,2.6,0,Math.PI*2);ctx.fill();
+   }
+   ctx.restore();
+  }
+ }
+ if(rubberGame.projectile){
+  const b=rubberGame.projectile;
+  ctx.save();ctx.translate(b.x,b.y);ctx.rotate(Math.atan2(b.vy,b.vx));
+  ctx.strokeStyle='#6d411b';ctx.lineWidth=3;ctx.fillStyle='#eed5a3';
+  ctx.beginPath();ctx.ellipse(0,0,b.r*1.35,b.r*.72,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.strokeStyle='#fff4d9';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(0,0,b.r*.6,b.r*.24,0,0,Math.PI*2);ctx.stroke();
+  ctx.restore();
+ }
+ if(!rubberGame.dragging&&!rubberGame.projectile&&rubberGame.shots>0){
+  ctx.fillStyle='#fff6d9';ctx.strokeStyle='#a67b50';ctx.lineWidth=2;ctx.font='bold 14px sans-serif';
+  ctx.textAlign='center';ctx.strokeText('輪ゴムを引っぱる',a.x,a.y-53);ctx.fillText('輪ゴムを引っぱる',a.x,a.y-53);
+ }
+ ctx.restore();
+}
 
 </script>
 </body>
