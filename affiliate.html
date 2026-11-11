@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>居間でこんな時間もいかが？｜UG/CORPO【アフィリエイト・Version 28】</title>
+<title>居間でこんな時間もいかが？｜UG/CORPO【アフィリエイト・Version 31】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -481,8 +481,8 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 .rubber-launcher:focus-visible{outline:3px dashed #ffc857;outline-offset:0}
 @media(max-width:760px){.rubber-launcher{width:80px;height:84px}.rubber-hud{margin:0 8px 10px;padding:11px}.rubber-hud-head{gap:6px}.rubber-hud-head strong{width:100%}.rubber-hud-head span{font-size:.75rem;padding:5px 7px}.rubber-hud p{font-size:.76rem}.rubber-mini-score{left:2%;top:91%;font-size:.72rem}}
 
-/* Version 28：畳に転がっている木のパチンコ。クリックで輪ゴムチャレンジへ */
-.slingshot-toy{position:absolute;z-index:6;left:4.2%;top:74.2%;width:154px;height:148px;background:transparent;border:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+/* Version 31：左下の元位置のまま、チラシより下の描画レイヤーに配置 */
+.slingshot-toy{position:absolute;z-index:7;left:5.7%;top:71.8%;width:154px;height:148px;background:transparent;border:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .slingshot-toy::before{content:"";position:absolute;left:24px;top:44px;width:118px;height:83px;transform:rotate(-26deg);border-radius:50%;background:radial-gradient(ellipse,#3e301e44 0%,#3e301e20 48%,transparent 73%);filter:blur(8px);pointer-events:none}
 .slingshot-toy .sling-art{display:block;width:100%;height:100%;overflow:visible;transform:perspective(800px) rotateX(47deg) rotate(-23deg);transform-origin:50% 55%;filter:drop-shadow(4px 7px 3px #33231480);transition:transform .2s ease,filter .2s ease;pointer-events:none}
 .slingshot-toy:hover .sling-art,.slingshot-toy:focus-visible .sling-art{transform:perspective(800px) rotateX(44deg) rotate(-17deg) translateY(-4px);filter:drop-shadow(5px 10px 5px #33231499)}
@@ -490,7 +490,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 .slingshot-toy .sling-tag{position:absolute;left:84px;bottom:11px;white-space:nowrap;font-size:.62rem;font-weight:850;color:#604528;background:#fff7dfdb;border:1px solid #a88c5c;border-radius:13px;padding:3px 6px;transform:rotate(8deg);opacity:.83;pointer-events:none}
 .scene.rubber-active .slingshot-toy{opacity:0;pointer-events:none}
 .scene.reversi-active .slingshot-toy{opacity:.4;pointer-events:none}
-@media(max-width:760px){.slingshot-toy{left:5.2%;top:80.2%;width:108px;height:108px}.slingshot-toy::before{left:15px;top:33px;width:90px;height:64px}.slingshot-toy .sling-tag{font-size:.5rem;left:57px;bottom:6px;padding:2px 4px}}
+@media(max-width:760px){.slingshot-toy{left:16.2%;top:79.5%;width:108px;height:108px}.slingshot-toy::before{left:15px;top:33px;width:90px;height:64px}.slingshot-toy .sling-tag{font-size:.5rem;left:57px;bottom:6px;padding:2px 4px}}
 
 /* Version 26: ちゃぶ台リバーシ。全てローカルで動作、広告とは独立 */
 .toolbar #reversiMode{background:#e8f1e2;border-color:#4c7548}
@@ -577,7 +577,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 28</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 31</div>
  <h1>居間でこんな時間もいかが？</h1>
  <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり、輪ゴムやリバーシでも遊べるよ！気になるチラシは手に取って裏まで見てみてね。</p>
  <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
@@ -613,22 +613,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
    <div class="teacup"><span class="steam steam-1"></span><span class="steam steam-2"></span><span class="steam steam-3"></span></div>
    <button class="tea-action" id="teaAction" type="button" aria-label="湯のみをクリックしてお茶を注ぐ" title="お茶を注ぐ 🍵"></button>
    <div class="table-note" id="teaNote">お茶をどうぞ 🍵</div>
-   <div class="paper-layer" id="papers"></div>
-   <button type="button" class="reversi-launchpad" id="reversiLaunchpad" aria-label="ちゃぶ台の上のオセロ盤からリバーシを始める" title="オセロで遊ぶ">
-     <span class="loose-disc black l1" aria-hidden="true"></span>
-     <span class="loose-disc white l2" aria-hidden="true"></span>
-     <span class="loose-disc black l3" aria-hidden="true"></span>
-     <span class="loose-disc white l4" aria-hidden="true"></span>
-     <span class="loose-disc black l5" aria-hidden="true"></span>
-     <span class="board" aria-hidden="true">
-       <span class="disc white d1"></span><span class="disc black d2"></span><span class="disc black d3"></span><span class="disc white d4"></span>
-     </span>
-     <span class="label">オセロ</span>
-   </button>
- </div>
-   <button type="button" class="uchiwa" id="fan" aria-label="うちわでチラシに風を送る" title="うちわでパタパタ">
-      <span class="fan-top">涼</span><span class="fan-handle"></span>
-   </button>
+   <!-- 畳のパチンコ。チラシの下に重なるように、同じ描画階層へ配置 -->
  <button type="button" class="slingshot-toy" id="slingshotToy" aria-label="畳に置かれた木のパチンコ。クリックして輪ゴム飛ばしで遊ぶ" title="輪ゴム飛ばしで遊ぶ？">
    <svg class="sling-art" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
      <!-- 畳の上の接地影 -->
@@ -651,6 +636,23 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
    </svg>
    <span class="sling-tag">あそぶ？</span>
  </button>
+   <div class="paper-layer" id="papers"></div>
+   <button type="button" class="reversi-launchpad" id="reversiLaunchpad" aria-label="ちゃぶ台の上のオセロ盤からリバーシを始める" title="オセロで遊ぶ">
+     <span class="loose-disc black l1" aria-hidden="true"></span>
+     <span class="loose-disc white l2" aria-hidden="true"></span>
+     <span class="loose-disc black l3" aria-hidden="true"></span>
+     <span class="loose-disc white l4" aria-hidden="true"></span>
+     <span class="loose-disc black l5" aria-hidden="true"></span>
+     <span class="board" aria-hidden="true">
+       <span class="disc white d1"></span><span class="disc black d2"></span><span class="disc black d3"></span><span class="disc white d4"></span>
+     </span>
+     <span class="label">オセロ</span>
+   </button>
+ </div>
+   <button type="button" class="uchiwa" id="fan" aria-label="うちわでチラシに風を送る" title="うちわでパタパタ">
+      <span class="fan-top">涼</span><span class="fan-handle"></span>
+   </button>
+
  <div class="block-layer" id="blockLayer" aria-label="畳に置かれた三角や四角の積み木10個。つかんで動かせます"></div>
  <canvas class="rubber-canvas" id="rubberCanvas" aria-hidden="true"></canvas>
  <div class="rubber-mini-score" id="rubberMiniScore" hidden aria-hidden="true">🎯 0点 ／ 残り3発</div>
