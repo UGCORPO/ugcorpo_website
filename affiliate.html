@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="UG/CORPOのおすすめ道具を、和室のちゃぶ台に散らかったチラシから探すアフィリエイトコーナー。">
-<title>居間でこんな時間もいかが？｜UG/CORPO【アフィリエイト・Version 24】</title>
+<title>居間でこんな時間もいかが？｜UG/CORPO【アフィリエイト・Version 28】</title>
 <style>
 :root{font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:#37291e;color-scheme:light}
 *{box-sizing:border-box}
@@ -480,6 +480,95 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
 .rubber-launcher:active{cursor:grabbing}
 .rubber-launcher:focus-visible{outline:3px dashed #ffc857;outline-offset:0}
 @media(max-width:760px){.rubber-launcher{width:80px;height:84px}.rubber-hud{margin:0 8px 10px;padding:11px}.rubber-hud-head{gap:6px}.rubber-hud-head strong{width:100%}.rubber-hud-head span{font-size:.75rem;padding:5px 7px}.rubber-hud p{font-size:.76rem}.rubber-mini-score{left:2%;top:91%;font-size:.72rem}}
+
+/* Version 28：畳に転がっている木のパチンコ。クリックで輪ゴムチャレンジへ */
+.slingshot-toy{position:absolute;z-index:6;left:4.2%;top:74.2%;width:154px;height:148px;background:transparent;border:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.slingshot-toy::before{content:"";position:absolute;left:24px;top:44px;width:118px;height:83px;transform:rotate(-26deg);border-radius:50%;background:radial-gradient(ellipse,#3e301e44 0%,#3e301e20 48%,transparent 73%);filter:blur(8px);pointer-events:none}
+.slingshot-toy .sling-art{display:block;width:100%;height:100%;overflow:visible;transform:perspective(800px) rotateX(47deg) rotate(-23deg);transform-origin:50% 55%;filter:drop-shadow(4px 7px 3px #33231480);transition:transform .2s ease,filter .2s ease;pointer-events:none}
+.slingshot-toy:hover .sling-art,.slingshot-toy:focus-visible .sling-art{transform:perspective(800px) rotateX(44deg) rotate(-17deg) translateY(-4px);filter:drop-shadow(5px 10px 5px #33231499)}
+.slingshot-toy:focus-visible{outline:3px solid #ffe3a2;outline-offset:1px;border-radius:25px}
+.slingshot-toy .sling-tag{position:absolute;left:84px;bottom:11px;white-space:nowrap;font-size:.62rem;font-weight:850;color:#604528;background:#fff7dfdb;border:1px solid #a88c5c;border-radius:13px;padding:3px 6px;transform:rotate(8deg);opacity:.83;pointer-events:none}
+.scene.rubber-active .slingshot-toy{opacity:0;pointer-events:none}
+.scene.reversi-active .slingshot-toy{opacity:.4;pointer-events:none}
+@media(max-width:760px){.slingshot-toy{left:5.2%;top:80.2%;width:108px;height:108px}.slingshot-toy::before{left:15px;top:33px;width:90px;height:64px}.slingshot-toy .sling-tag{font-size:.5rem;left:57px;bottom:6px;padding:2px 4px}}
+
+/* Version 26: ちゃぶ台リバーシ。全てローカルで動作、広告とは独立 */
+.toolbar #reversiMode{background:#e8f1e2;border-color:#4c7548}
+.toolbar #reversiMode[aria-pressed="true"]{background:#366040;color:#fff;border-color:#234830}
+.scene.reversi-active .paper-layer{opacity:.13;filter:grayscale(.45);pointer-events:none!important;transition:opacity .25s}
+.scene.reversi-active .flyer,.scene.reversi-active .wood-block{pointer-events:none!important}
+.scene.reversi-active .block-layer{opacity:.35;transition:opacity .25s}
+.scene.reversi-active .tea-action,.scene.reversi-active .uchiwa{pointer-events:none}
+.scene.reversi-active .reversi-launchpad{opacity:0;pointer-events:none;transform:translate(-50%,-50%) perspective(1400px) rotateX(36deg) rotate(-4deg) scale(.94)}
+.reversi-launchpad{position:absolute;z-index:7;left:58.5%;top:24.4%;width:170px;height:126px;border:0;background:transparent;padding:0;cursor:pointer;transform:translate(-50%,-50%) perspective(1400px) rotateX(36deg) rotate(-4deg);transform-origin:center center;transition:transform .18s ease,opacity .18s ease,filter .18s ease}
+.reversi-launchpad::before{content:"";position:absolute;left:30px;top:25px;width:104px;height:74px;border-radius:50%;background:radial-gradient(ellipse at center,#00000030 0%,#00000018 42%,#00000008 68%,transparent 72%);filter:blur(2px);pointer-events:none}
+.reversi-launchpad:hover{transform:translate(-50%,-50%) perspective(1400px) rotateX(36deg) rotate(-2deg) scale(1.03);filter:brightness(1.03)}
+.reversi-launchpad:focus-visible{outline:3px solid #ffe27d;outline-offset:2px}
+.reversi-launchpad .board{position:absolute;left:48px;top:18px;width:82px;height:82px;border:5px solid #51311c;border-radius:9px;background:linear-gradient(#3f9866,#267649);box-shadow:0 4px 0 #392718,0 9px 10px #1f12094d,inset 0 0 0 1px #ffffff24,inset 0 0 18px #00000022}
+.reversi-launchpad .board::before,.reversi-launchpad .board::after{content:"";position:absolute;inset:0;border-radius:4px;pointer-events:none}
+.reversi-launchpad .board::before{background:linear-gradient(90deg,transparent 24%,#17472e 24% 26%,transparent 26% 49%,#17472e 49% 51%,transparent 51% 74%,#17472e 74% 76%,transparent 76%),linear-gradient(transparent 24%,#17472e 24% 26%,transparent 26% 49%,#17472e 49% 51%,transparent 51% 74%,#17472e 74% 76%,transparent 76%)}
+.reversi-launchpad .disc,.reversi-launchpad .loose-disc{position:absolute;border-radius:50%;box-shadow:inset -2px -2px 4px #0004,1px 2px 3px #0005;pointer-events:none}
+.reversi-launchpad .disc{width:20px;height:20px;border:1px solid #444}
+.reversi-launchpad .loose-disc{width:18px;height:18px;border:1px solid #444;z-index:2}
+.reversi-launchpad .black{background:radial-gradient(circle at 34% 25%,#65696f,#1a1b1f 66%,#111)}
+.reversi-launchpad .white{background:radial-gradient(circle at 35% 25%,#fff,#e9ebe6 72%,#c6c8c2);box-shadow:inset -2px -2px 4px #7774,1px 2px 3px #0004}
+.reversi-launchpad .disc.d1{left:18px;top:18px}.reversi-launchpad .disc.d2{left:40px;top:18px}.reversi-launchpad .disc.d3{left:18px;top:40px}.reversi-launchpad .disc.d4{left:40px;top:40px}
+.reversi-launchpad .loose-disc.l1{left:23px;top:24px;transform:rotate(14deg)}
+.reversi-launchpad .loose-disc.l2{left:136px;top:27px;transform:rotate(-8deg)}
+.reversi-launchpad .loose-disc.l3{left:141px;top:67px;transform:rotate(5deg)}
+.reversi-launchpad .loose-disc.l4{left:31px;top:72px;transform:rotate(-18deg)}
+.reversi-launchpad .loose-disc.l5{left:62px;top:101px;transform:rotate(10deg)}
+.reversi-launchpad .label{position:absolute;right:4px;top:81px;font-size:.67rem;font-weight:900;letter-spacing:.08em;color:#4b3420;background:#fff7dfde;border:1px solid #c7a06b;border-radius:999px;padding:3px 8px;white-space:nowrap;box-shadow:0 2px 4px #00000017;pointer-events:none}
+@media(max-width:760px){.reversi-launchpad{left:60%;top:26%;width:118px;height:92px;transform:translate(-50%,-50%) perspective(1050px) rotateX(38deg) rotate(-3deg)}.reversi-launchpad:hover{transform:translate(-50%,-50%) perspective(1050px) rotateX(38deg) rotate(-2deg) scale(1.03)}.scene.reversi-active .reversi-launchpad{transform:translate(-50%,-50%) perspective(1050px) rotateX(38deg) rotate(-3deg) scale(.94)}.reversi-launchpad::before{left:22px;top:21px;width:75px;height:54px}.reversi-launchpad .board{left:31px;top:18px;width:54px;height:54px;border-width:4px}.reversi-launchpad .disc{width:14px;height:14px}.reversi-launchpad .loose-disc{width:13px;height:13px}.reversi-launchpad .disc.d1{left:12px;top:12px}.reversi-launchpad .disc.d2{left:28px;top:12px}.reversi-launchpad .disc.d3{left:12px;top:28px}.reversi-launchpad .disc.d4{left:28px;top:28px}.reversi-launchpad .loose-disc.l1{left:11px;top:17px}.reversi-launchpad .loose-disc.l2{left:87px;top:18px}.reversi-launchpad .loose-disc.l3{left:91px;top:49px}.reversi-launchpad .loose-disc.l4{left:19px;top:55px}.reversi-launchpad .loose-disc.l5{left:44px;top:72px}.reversi-launchpad .label{right:4px;top:61px;font-size:.58rem;padding:3px 6px}}
+
+.reversi-stage[hidden]{display:none!important}
+.reversi-stage{position:absolute;z-index:45;left:50%;top:23%;transform:translateX(-50%) rotate(-1deg);width:min(500px,91%);max-height:75%;overflow:auto;overscroll-behavior:contain;padding:12px 14px 14px;border:5px solid #6e4123;border-radius:15px;background:linear-gradient(125deg,#ecd4ab,#f8eacb 45%,#c59b6c);box-shadow:0 10px 0 #522e17,12px 27px 35px #241207a0,inset 0 2px 10px #fff9e46e;color:#322519;touch-action:pan-y}
+.reversi-stage h2{font-size:1.12rem;text-align:center;letter-spacing:.12em;margin:2px 0 9px;color:#4b3320}
+.reversi-scores{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-weight:850;font-size:.87rem}
+.reversi-scores .score{background:#fffaeda8;border-radius:8px;padding:6px 8px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.reversi-disc{display:inline-block;width:22px;height:22px;border-radius:50%;border:1px solid #555;box-shadow:inset -3px -3px 4px #0006,1px 1px 2px #0005;flex:none}
+.reversi-disc.black{background:radial-gradient(circle at 34% 25%,#62656a,#1c1d20 65%,#101115)}
+.reversi-disc.white{background:radial-gradient(circle at 30% 25%,#fff,#e8e9e5 70%,#c3c6bf);box-shadow:inset -2px -2px 4px #7776,1px 2px 2px #0005}
+.reversi-status{text-align:center;font-size:.83rem;margin:6px auto 9px;padding:6px;border-radius:6px;background:#fff5d7d9;color:#493721;font-weight:750;min-height:32px}
+.reversi-board{width:min(100%,365px);aspect-ratio:1;margin:auto;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:6px solid #52321b;box-shadow:0 4px 9px #0005,inset 0 0 12px #0005;background:#163d2c}
+.reversi-cell{border:1px solid #17472e;background:#328453;padding:1px;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;border-radius:0;position:relative;touch-action:manipulation;cursor:default}
+.reversi-cell:nth-child(even){background:#318052}
+.reversi-cell:not(:disabled){cursor:pointer}
+.reversi-cell:not(:disabled):hover{background:#54a16d}
+.reversi-cell .reversi-disc{width:76%;height:76%;border-width:1px}
+.reversi-cell .legal-mark{width:19%;height:19%;background:#c6eabb99;border-radius:50%;box-shadow:0 0 4px #fff6}
+.reversi-cell.last{outline:2px solid #f4df78;outline-offset:-4px}
+.reversi-cell:focus-visible{outline:3px solid #ffe06c;outline-offset:-3px;z-index:2}
+.reversi-controls{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.reversi-controls button{border:1px solid #9a7444;border-radius:20px;padding:7px 11px;background:#fff9ec;color:#51371f;font-size:.78rem;font-weight:850}
+.reversi-controls button:disabled{opacity:.48;cursor:not-allowed}
+.reversi-tips{color:#644d37;text-align:center;margin:9px 0 0;font-size:.69rem;line-height:1.5}
+@media(max-width:760px){.reversi-stage{top:23%;width:min(400px,93%);padding:9px 9px 10px;border-width:4px;max-height:70%;transform:translateX(-50%) rotate(0)}.reversi-stage h2{font-size:1rem}.reversi-scores{font-size:.76rem}.reversi-scores .score{padding:4px 5px}.reversi-status{font-size:.74rem;margin:5px 0 7px}.reversi-disc{width:18px;height:18px}.reversi-controls button{padding:7px 9px;font-size:.73rem}}
+@media(prefers-reduced-motion:reduce){.scene.reversi-active .block-layer,.scene.reversi-active .paper-layer{transition:none}}
+
+\n/* Version 26 — ちゃぶ台・多人数＆多角形リバーシ */
+.reversi-stage{width:min(540px,94%);top:16%;max-height:82%;overflow:auto;transform:translateX(-50%) rotate(-.3deg)}
+.reversi-setup{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 9px;margin:6px 0 9px}
+.reversi-setup label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;font-weight:850;color:#604629}
+.reversi-setup select{min-width:0;max-width:100%;border:1px solid #b09570;background:#fffbf1;color:#403024;font-size:.78rem;font-weight:750;padding:7px 22px 7px 7px;border-radius:7px}
+.reversi-setup select:disabled{opacity:.5}
+.reversi-scores{flex-wrap:wrap;justify-content:center;gap:5px;margin:7px auto 6px}
+.reversi-scores .score{font-size:.74rem;padding:4px 6px;border:2px solid transparent}
+.reversi-scores .score.current{border-color:#a96c26;background:#fff4cf}
+.reversi-scores .reversi-disc{width:17px;height:17px}
+.reversi-board{width:min(100%,390px);border-radius:4px;overflow:hidden}
+.reversi-board.is-square{display:grid;position:relative}
+.reversi-board.is-hex{display:block;position:relative;border-radius:10px;background:radial-gradient(circle,#3e8865,#27543f)}
+.reversi-board.is-pentagon{background:transparent;clip-path:polygon(50% 0%,97.55% 34.55%,79.4% 90.45%,20.6% 90.45%,2.45% 34.55%)}
+.reversi-board.is-hex .reversi-cell{position:absolute;aspect-ratio:auto;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);border:1px solid #20543a;transform:translate(-50%,-50%);border-radius:0}
+.reversi-board .reversi-cell.is-hole{visibility:hidden;pointer-events:none}
+.reversi-cell:disabled{opacity:1}
+.reversi-cell .reversi-disc{width:72%;height:72%;box-shadow:inset -2px -2px 4px #0005,1px 1px 2px #0004}
+.reversi-disc.blue{background:radial-gradient(circle at 32% 23%,#93d1ff,#306ba7 64%,#20467d);border-color:#224467}
+.reversi-disc.red{background:radial-gradient(circle at 32% 23%,#ffc0ad,#cb5c53 64%,#863d39);border-color:#85383c}
+.reversi-note{margin:6px auto;color:#66513a;font-size:.72rem;text-align:center}
+.reversi-cell .legal-mark{min-width:4px;min-height:4px}
+@media(max-width:760px){.reversi-stage{width:min(440px,96%);top:19%;max-height:76%;padding:9px;transform:translateX(-50%)}.reversi-setup{gap:5px}.reversi-setup label{font-size:.66rem}.reversi-setup select{font-size:.72rem;padding:6px 4px}.reversi-board{width:min(100%,340px)}.reversi-scores .score{font-size:.66rem;padding:3px 5px}.reversi-scores .reversi-disc{width:15px;height:15px}}
 </style>
 </head>
 <body>
@@ -488,15 +577,16 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <a class="back" href="index.html">← トップページへ戻る</a>
 </header>
 <section class="intro">
- <div class="eyebrow">UG/CORPO ・ VERSION 24</div>
+ <div class="eyebrow">UG/CORPO ・ VERSION 28</div>
  <h1>居間でこんな時間もいかが？</h1>
- <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり、輪ゴムで積み木倒しにも挑戦！気になるチラシは手に取って裏まで見てみてね。</p>
+ <p>畳の上を歩く看板猫と、お茶のあるちゃぶ台。足元には色々な形の木の積み木が散らばっています。<br>積み木をつかんで積んだり倒したり、輪ゴムやリバーシでも遊べるよ！気になるチラシは手に取って裏まで見てみてね。</p>
  <div class="notice">【PR】このページにはアフィリエイト広告が含まれます。楽天市場の商品を紹介しています。</div>
 </section>
 <div class="toolbar" aria-label="和室での遊び方">
   <button id="reset" type="button">↺ チラシを散らかし直す</button>
   <button id="resetBlocks" type="button">▦ 積み木を並べ直す</button>
   <button id="rubberMode" type="button" aria-pressed="false">🎯 輪ゴム飛ばしで遊ぶ</button>
+  <button id="reversiMode" type="button" aria-pressed="false">⚫ リバーシで遊ぶ</button>
   <div class="time-switch" role="group" aria-label="和室の時間帯">
     <button type="button" class="time-btn is-active" data-time="auto" aria-pressed="true">自動</button>
     <button type="button" class="time-btn" data-time="morning" aria-pressed="false">朝</button>
@@ -504,7 +594,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
     <button type="button" class="time-btn" data-time="night" aria-pressed="false">夜</button>
   </div>
   <button id="soundToggle" type="button" aria-pressed="false">♪ 音 OFF</button>
-  <span>チラシを探す ／ 猫と遊ぶ ／ 畳で積み木を積む ／ 輪ゴムを飛ばす</span>
+  <span>チラシを探す ／ 猫と遊ぶ ／ 畳で積み木を積む ／ 輪ゴムを飛ばす ／ リバーシ</span>
 </div>
 <section class="rubber-hud" id="rubberHud" hidden aria-label="輪ゴム飛ばしチャレンジ" role="region">
   <div class="rubber-hud-head"><strong>🎯 本日の輪ゴムチャレンジ</strong><span id="rubberScore" aria-live="polite">0点</span><span id="rubberShots">残り3発</span><span id="rubberBest">今日のベスト：0点</span></div>
@@ -524,14 +614,67 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
    <button class="tea-action" id="teaAction" type="button" aria-label="湯のみをクリックしてお茶を注ぐ" title="お茶を注ぐ 🍵"></button>
    <div class="table-note" id="teaNote">お茶をどうぞ 🍵</div>
    <div class="paper-layer" id="papers"></div>
+   <button type="button" class="reversi-launchpad" id="reversiLaunchpad" aria-label="ちゃぶ台の上のオセロ盤からリバーシを始める" title="オセロで遊ぶ">
+     <span class="loose-disc black l1" aria-hidden="true"></span>
+     <span class="loose-disc white l2" aria-hidden="true"></span>
+     <span class="loose-disc black l3" aria-hidden="true"></span>
+     <span class="loose-disc white l4" aria-hidden="true"></span>
+     <span class="loose-disc black l5" aria-hidden="true"></span>
+     <span class="board" aria-hidden="true">
+       <span class="disc white d1"></span><span class="disc black d2"></span><span class="disc black d3"></span><span class="disc white d4"></span>
+     </span>
+     <span class="label">オセロ</span>
+   </button>
  </div>
    <button type="button" class="uchiwa" id="fan" aria-label="うちわでチラシに風を送る" title="うちわでパタパタ">
       <span class="fan-top">涼</span><span class="fan-handle"></span>
    </button>
+ <button type="button" class="slingshot-toy" id="slingshotToy" aria-label="畳に置かれた木のパチンコ。クリックして輪ゴム飛ばしで遊ぶ" title="輪ゴム飛ばしで遊ぶ？">
+   <svg class="sling-art" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+     <!-- 畳の上の接地影 -->
+     <ellipse cx="80" cy="120" rx="48" ry="14" fill="#2a241b" opacity=".14"/>
+     <!-- 木の二股。濃い輪郭→木の色→木目ハイライトで厚みを表現 -->
+     <path d="M80 141 Q77 118 80 93 Q84 67 80 49 Q72 34 47 20 M80 49 Q99 33 117 16" fill="none" stroke="#4f2c17" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+     <path d="M80 141 Q77 118 80 93 Q84 67 80 49 Q72 34 47 20 M80 49 Q99 33 117 16" fill="none" stroke="#a86d3b" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+     <path d="M76 137 Q74 103 78 89 Q82 59 78 48 Q68 32 46 19 M84 47 Q101 29 118 15" fill="none" stroke="#d7a269" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+     <path d="M72 99 Q78 91 86 87 M69 116 Q77 109 87 108 M63 34 L75 43 M94 38 L111 24" fill="none" stroke="#794623" stroke-width="2.2" stroke-linecap="round" opacity=".42"/>
+     <!-- 枝の先端を包む革のバンド -->
+     <path d="M39 18 L53 10 L61 24 L47 32 Z M109 11 L125 7 L130 25 L114 30 Z" fill="#4d3328" stroke="#2b2019" stroke-width="1.5"/>
+     <path d="M45 13 L56 25 M115 14 L124 26" stroke="#b18a61" stroke-width="2" opacity=".55"/>
+     <!-- 輪ゴムは少し緩んで中央の革ポケットに付いている -->
+     <path d="M51 21 C55 33 59 42 72 52 M119 19 C113 36 108 44 92 53" stroke="#3d291b" stroke-width="5" fill="none" stroke-linecap="round"/>
+     <path d="M51 21 C55 33 59 42 72 52 M119 19 C113 36 108 44 92 53" stroke="#bba071" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+     <path d="M71 48 Q82 42 94 48 L92 60 Q83 65 73 59 Z" fill="#6f412e" stroke="#382218" stroke-width="2"/>
+     <path d="M75 51 Q82 47 90 51" fill="none" stroke="#ad7d56" stroke-width="2" stroke-linecap="round"/>
+     <!-- 持ち手の巻き革 -->
+     <path d="M67 120 Q79 125 91 120 M66 127 Q78 132 92 127" fill="none" stroke="#5a3827" stroke-width="4" opacity=".85"/>
+   </svg>
+   <span class="sling-tag">あそぶ？</span>
+ </button>
  <div class="block-layer" id="blockLayer" aria-label="畳に置かれた三角や四角の積み木10個。つかんで動かせます"></div>
  <canvas class="rubber-canvas" id="rubberCanvas" aria-hidden="true"></canvas>
  <div class="rubber-mini-score" id="rubberMiniScore" hidden aria-hidden="true">🎯 0点 ／ 残り3発</div>
  <button type="button" class="rubber-launcher" id="rubberLauncher" hidden aria-label="輪ゴムを引っ張って離す。矢印キーで角度・強さ、スペースで発射" title="左下に引いて離す / 矢印キー + Spaceで発射"></button>
+ <section class="reversi-stage" id="reversiStage" hidden aria-label="ちゃぶ台・変わり種リバーシ" role="region">
+   <h2>⚫ ちゃぶ台・変わり種リバーシ ⚪</h2>
+   <div class="reversi-setup">
+    <label>人数<select id="revPlayers"><option value="2">2人</option><option value="3">3人</option><option value="4">4人</option></select></label>
+    <label>対戦方法<select id="revVsCPU"><option value="cpu">自分 vs CPU</option><option value="local">同じ端末で対戦</option></select></label>
+    <label>盤面の形<select id="revShape"><option value="square">四角形（標準）</option><option value="hex">六角形（六角マス）</option><option value="pentagon">五角形（実験）</option></select></label>
+    <label>盤の大きさ<select id="revSize"><option value="8">小（8×8相当）</option><option value="10">中（10×10相当）</option><option value="12">大（12×12相当）</option></select></label>
+    <label>CPUの難易度<select id="revDifficulty"><option value="easy">やさしい</option><option value="normal" selected>ふつう</option><option value="hard">つよい</option></select></label>
+   </div>
+   <div class="reversi-scores" id="revScores" aria-label="各色の石の数"></div>
+   <p class="reversi-status" id="revStatus" role="status" aria-live="polite">黒の番です</p>
+   <div class="reversi-board is-square" id="revBoard" aria-label="リバーシ盤。光るマスに石を置けます"></div>
+   <p class="reversi-note" id="revShapeNote">8方向に挟む。黒から順番に置こう！</p>
+   <div class="reversi-controls">
+    <button type="button" id="revRestart">↺ 最初から</button>
+    <button type="button" id="revUndo">↶ 1手戻す</button>
+    <button type="button" id="revClose">盤を片付ける</button>
+   </div>
+   <p class="reversi-tips">3〜4人戦：相手の石を自分の石で挟むと、間にある異なる色をまとめて自分の色に！置けなければ自動パス。五角形は独自の実験ルールです。ゲーム操作で広告は開きません。</p>
+ </section>
  <div class="zabuton" aria-hidden="true"></div>
  <button class="cat" id="cat" type="button" aria-label="歩いている看板猫をなでる" title="猫をなでる 🐾">
    <span class="cat-bubble" id="catBubble" aria-hidden="true">にゃ〜♪</span>
@@ -554,7 +697,7 @@ dialog.is-back .paper-modal-inner{transform:rotateY(180deg)}
  <div class="ambient-light" aria-hidden="true"></div>
  <div class="scene-toast" id="sceneToast" role="status" aria-live="polite"></div>
 </div>
-<p class="room-foot">畳に散らばった10個の積み木をつかんで積んだり、輪ゴムチャレンジで倒したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ 楽天市場への広告リンク付きチラシが16商品、準備中のチラシもあります。</p>
+<p class="room-foot">畳に散らばった10個の積み木をつかんで積んだり、輪ゴムチャレンジで倒したり、リバーシでCPUと対戦したりしてみよう。三角・長方形・正方形・ひし形もあるよ！ ※ 楽天市場への広告リンク付きチラシが16商品、準備中のチラシもあります。</p>
 </main>
 <dialog id="detail" aria-label="チラシの商品紹介">
  <div class="paper-modal"><div class="paper-modal-inner">
@@ -1405,6 +1548,7 @@ function beginRubberRound(){
  rubberStage();updateRubberSize();updateRubberHud();
 }
 function switchRubberMode(on){
+ if(on && rev.active)revSetMode(false);
  if(on===rubberGame.active)return;
  rubberGame.active=on;
  scene.classList.toggle('rubber-active',on);
@@ -1426,6 +1570,14 @@ function switchRubberMode(on){
  }
 }
 rubberModeButton.addEventListener('click',()=>switchRubberMode(!rubberGame.active));
+// 畳の木のパチンコから起動する。ゲーム中の広告リンクには触れない。
+const slingshotToy=document.getElementById('slingshotToy');
+slingshotToy.addEventListener('click',()=>{
+ if(rubberGame.active)return;
+ if(confirm('輪ゴム飛ばしで遊びますか？'))switchRubberMode(true);
+ else showToast('またあとで遊ぼう！ 🎯');
+});
+
 document.getElementById('rubberQuit').addEventListener('click',()=>switchRubberMode(false));
 document.getElementById('rubberAgain').addEventListener('click',()=>{
  if(!rubberGame.active)return;
@@ -1615,6 +1767,307 @@ function drawRubber(){
  }
  ctx.restore();
 }
+
+
+/* ========================================================
+   Version 26 — 多人数・四角/六角/五角リバーシ
+   2〜4人/CPU難易度3段階/可変盤面/パス/Undo
+   六角は六角マスの6方向。五角は矩形マスを五角形に切った実験ルール。
+   商品リンクやその他ゲームとは完全に独立。
+======================================================== */
+const revEls={
+ button:document.getElementById('reversiMode'),stage:document.getElementById('reversiStage'),
+ board:document.getElementById('revBoard'),scores:document.getElementById('revScores'),
+ status:document.getElementById('revStatus'),undo:document.getElementById('revUndo'),
+ players:document.getElementById('revPlayers'),vsCPU:document.getElementById('revVsCPU'),
+ shape:document.getElementById('revShape'),size:document.getElementById('revSize'),
+ difficulty:document.getElementById('revDifficulty'),note:document.getElementById('revShapeNote')};
+const revNames=['','黒','白','青','赤'];
+const revStyles=['','black','white','blue','red'];
+const revSquareDirs=[[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]];
+const revHexDirs=[[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1]];
+const rev={active:false,started:false,board:[],cells:[],rays:[],index:new Map(),turn:1,
+ players:2,shape:'square',size:8,vsCPU:true,difficulty:'normal',over:false,
+ history:[],last:-1,thinking:false,timer:null,message:''};
+function revKey(a,b){return a+','+b;}
+function revInPoly(x,y){
+ let inside=false;const vertices=Array.from({length:5},(_,i)=>{
+  const a=-Math.PI/2+i*2*Math.PI/5;return [0.5+0.49*Math.cos(a),0.5+0.49*Math.sin(a)];
+ });
+ for(let i=0,j=4;i<5;j=i++){
+  const [xi,yi]=vertices[i],[xj,yj]=vertices[j];
+  if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;
+ }
+ return inside;
+}
+function revConfigure(){
+ rev.players=Number(revEls.players.value);rev.shape=revEls.shape.value;
+ rev.size=Number(revEls.size.value);rev.vsCPU=revEls.vsCPU.value==='cpu';
+ rev.difficulty=revEls.difficulty.value;
+ revEls.difficulty.disabled=!rev.vsCPU;
+ revEls.note.textContent=rev.shape==='hex'?'六角マスの6方向に挟む。3人戦だと特に面白い！':
+  rev.shape==='pentagon'?'五角形に切り取った四角マスで8方向に挟む実験モード。対称性には偏りがあります。':
+  '普通の四角マスで8方向に挟む。人数が増えると一手で複数色を奪える！';
+}
+function revInit(){
+ clearTimeout(rev.timer);rev.thinking=false;revConfigure();
+ rev.cells=[];rev.index=new Map();rev.rays=[];
+ const n=rev.size;
+ if(rev.shape==='hex'){
+  const radius=n===8?3:n===10?4:5;rev.radius=radius;
+  for(let r=-radius;r<=radius;r++)for(let q=-radius;q<=radius;q++){
+   if(Math.max(Math.abs(q),Math.abs(r),Math.abs(q+r))>radius)continue;
+   const i=rev.cells.length;rev.cells.push({a:q,b:r,valid:true});rev.index.set(revKey(q,r),i);
+  }
+ }else{
+  rev.radius=0;
+  for(let r=0;r<n;r++)for(let c=0;c<n;c++){
+   const valid=rev.shape!=='pentagon'||revInPoly((c+.5)/n,(r+.5)/n);
+   const i=rev.cells.length;rev.cells.push({a:r,b:c,valid});if(valid)rev.index.set(revKey(r,c),i);
+  }
+ }
+ const dirs=rev.shape==='hex'?revHexDirs:revSquareDirs;
+ rev.rays=rev.cells.map((cell)=>dirs.map(([a,b])=>{
+  const ray=[];let x=cell.a+a,y=cell.b+b;
+  while(rev.index.has(revKey(x,y))){ray.push(rev.index.get(revKey(x,y)));x+=a;y+=b;}
+  return ray;
+ }));
+ rev.board=Array(rev.cells.length).fill(0);
+ function place(a,b,w){const i=rev.index.get(revKey(a,b));if(i!==undefined)rev.board[i]=w;}
+ if(rev.shape==='hex'){
+  if(rev.players===2){place(0,0,1);place(1,0,2);place(0,1,2);place(1,1,1);}
+  else{
+   const seeds3=[[-2,0,2],[-1,-1,3],[-1,0,1],[0,-1,2],[0,1,1],[0,2,3],[1,0,3],[1,1,2],[2,0,1]];
+   const seeds4=[[-2,0,3],[-2,1,1],[-1,-1,2],[-1,1,4],[-1,2,3],[0,-2,4],[0,-1,2],[0,1,1],[0,2,2],[1,-2,1],[1,-1,3],[1,0,4]];
+   for(const [a,b,w] of (rev.players===3?seeds3:seeds4))place(a,b,w);
+  }
+ }else if(rev.players===2){
+  const c=n/2;place(c-1,c-1,2);place(c,c,2);place(c-1,c,1);place(c,c-1,1);
+ }else{
+  const k=rev.players,offset=Math.floor((n-k)/2);
+  for(let r=0;r<k;r++)for(let c=0;c<k;c++)place(r+offset,c+offset,(r+c)%k+1);
+ }
+ rev.turn=1;rev.last=-1;rev.over=false;rev.history=[];rev.message='黒の番です。光るマスに置いてね！';rev.started=true;
+ revResolve();revRender();revQueueCPU();
+}
+function revFlips(board,pos,who){
+ if(board[pos]!==0||!rev.cells[pos]?.valid)return [];
+ const result=[];
+ for(const ray of rev.rays[pos]){
+  const line=[];
+  for(const j of ray){
+   const v=board[j];if(v===0)break;
+   if(v===who){if(line.length)result.push(...line);break;}
+   line.push(j);
+  }
+ }
+ return result;
+}
+function revMoves(board,who){
+ const legal=[];
+ for(let i=0;i<board.length;i++)if(!board[i]&&rev.cells[i].valid&&revFlips(board,i,who).length)legal.push(i);
+ return legal;
+}
+function revApplyBoard(board,pos,who){
+ const next=board.slice();const flips=revFlips(board,pos,who);
+ if(!flips.length)return null;
+ next[pos]=who;for(const j of flips)next[j]=who;return next;
+}
+function revCounts(board=rev.board){
+ const arr=Array(rev.players+1).fill(0);for(const v of board)if(v>0&&v<=rev.players)arr[v]++;return arr;
+}
+function revResolve(){
+ if(rev.over)return;
+ const skips=[];
+ for(let t=0;t<rev.players;t++){
+  if(revMoves(rev.board,rev.turn).length){
+   rev.message=(skips.length?skips.join('・')+'は置けないのでパス！　':'')+revNames[rev.turn]+(rev.vsCPU&&rev.turn!==1?'（CPU）':'')+'の番です';return;
+  }
+  skips.push(revNames[rev.turn]);rev.turn=rev.turn%rev.players+1;
+ }
+ rev.over=true;const counts=revCounts(),best=Math.max(...counts.slice(1));
+ const wins=counts.map((n,i)=>n===best&&i>0?revNames[i]:null).filter(Boolean);
+ rev.message=wins.length>1?'引き分け！ '+wins.join('と')+'が'+best+'枚':wins[0]+'の勝ち！ '+best+'枚';
+}
+function revRender(){
+ if(!rev.started)return;
+ const counts=revCounts();revEls.scores.replaceChildren();
+ for(let w=1;w<=rev.players;w++){
+  const el=document.createElement('span');el.className='score'+(!rev.over&&rev.turn===w?' current':'');
+  const disc=document.createElement('span');disc.className='reversi-disc '+revStyles[w];disc.setAttribute('aria-hidden','true');
+  el.append(disc,document.createTextNode(revNames[w]+' '+counts[w]+'枚'+(rev.vsCPU&&w>1?' CPU':'')));revEls.scores.append(el);
+ }
+ const legal=!rev.over&&!rev.thinking&&(!rev.vsCPU||rev.turn===1)?new Set(revMoves(rev.board,rev.turn)):new Set();
+ revEls.board.replaceChildren();revEls.board.className='reversi-board is-'+rev.shape;
+ const n=rev.size;const radius=rev.radius;
+ if(rev.shape!=='hex')revEls.board.style.gridTemplateColumns='repeat('+n+',minmax(0,1fr))';
+ else revEls.board.style.gridTemplateColumns='';
+ revEls.board.setAttribute('aria-label',rev.shape==='hex'?'六角マスのリバーシ盤。6方向で挟みます':'リバーシ盤 '+n+'×'+n+'。8方向で挟みます');
+ const frag=document.createDocumentFragment();
+ for(let i=0;i<rev.cells.length;i++){
+  const cell=rev.cells[i];const b=document.createElement('button');b.type='button';b.className='reversi-cell';
+  if(!cell.valid){b.classList.add('is-hole');b.disabled=true;frag.append(b);continue;}
+  const v=rev.board[i],can=legal.has(i);b.disabled=!can||!rev.active;
+  if(i===rev.last)b.classList.add('last');
+  b.setAttribute('aria-label',rev.shape==='hex'?('六角マス '+cell.a+','+cell.b+'：'+(v?revNames[v]+'石':can?'置ける':'空き')):
+   ((cell.a+1)+'行'+(cell.b+1)+'列：'+(v?revNames[v]+'石':can?'置ける':'空き')));
+  if(v){const disc=document.createElement('span');disc.className='reversi-disc '+revStyles[v];disc.setAttribute('aria-hidden','true');b.append(disc);}
+  else if(can){const mark=document.createElement('span');mark.className='legal-mark';mark.setAttribute('aria-hidden','true');b.append(mark);}
+  if(can)b.addEventListener('click',()=>revPlay(i));
+  if(rev.shape==='hex'){
+   const q=cell.a,r=cell.b;
+   b.style.width=(100/(2*radius+1))+'%';b.style.height=(200/(3*radius+2))+'%';
+   b.style.left=((q+r/2+radius+.5)/(2*radius+1)*100)+'%';
+   b.style.top=((1.5*r+1.5*radius+1)/(3*radius+2)*100)+'%';
+  }
+  frag.append(b);
+ }
+ revEls.board.append(frag);revEls.status.textContent=rev.message;
+ revEls.undo.disabled=!rev.history.length;
+}
+function revPlay(pos){
+ if(rev.over||rev.thinking||!rev.active||rev.vsCPU&&rev.turn!==1)return;
+ revCommit(pos);revQueueCPU();
+}
+function revCommit(pos){
+ const next=revApplyBoard(rev.board,pos,rev.turn);if(!next)return false;
+ rev.history.push({board:rev.board.slice(),turn:rev.turn,last:rev.last,message:rev.message,over:rev.over});
+ rev.board=next;rev.last=pos;rev.turn=rev.turn%rev.players+1;
+ revResolve();revRender();return true;
+}
+function revIsCorner(i){
+ const c=rev.cells[i],n=rev.size;
+ if(rev.shape==='square')return (c.a===0||c.a===n-1)&&(c.b===0||c.b===n-1);
+ if(rev.shape==='hex')return Math.max(Math.abs(c.a),Math.abs(c.b),Math.abs(c.a+c.b))===rev.radius&&
+  ([c.a,c.b,c.a+c.b].filter(v=>Math.abs(v)===rev.radius).length>=2);
+ // Five extreme vertex squares
+ const x=(c.b+.5)/n,y=(c.a+.5)/n;
+ return Array.from({length:5},(_,k)=>{const a=-Math.PI/2+k*2*Math.PI/5;
+  return (x-(.5+.4*Math.cos(a)))**2+(y-(.5+.4*Math.sin(a)))**2;
+ }).some(d=>d<.023);
+}
+function revEdgeWeight(pos){
+ const cell=rev.cells[pos],n=rev.size;
+ if(revIsCorner(pos))return 75;
+ if(rev.shape==='square'){
+  const r=cell.a,c=cell.b;
+  const nearCorner=(Math.min(r,n-1-r)<=1&&Math.min(c,n-1-c)<=1);
+  if(nearCorner)return -24;
+  if(r===0||c===0||r===n-1||c===n-1)return 13;
+  return 0;
+ }
+ const count=rev.rays[pos].filter(r=>r.length>0).length;
+ return count<(rev.shape==='hex'?6:8)?9:0;
+}
+function revEval(board,who){
+ const counts=revCounts(board),my=counts[who];let others=0;
+ for(let w=1;w<=rev.players;w++)if(w!==who)others+=counts[w];
+ const total=board.reduce((n,v)=>n+(v!==0),0),end=total>=rev.cells.filter(c=>c.valid).length*.8;
+ let value=(my-others/Math.max(1,rev.players-1))*(end?5:.7);
+ for(let i=0;i<board.length;i++)if(board[i]){
+  const weight=revEdgeWeight(i);value+=weight*(board[i]===who?1:-.55);
+ }
+ const mobility=revMoves(board,who).length;
+ value+=mobility*2.1;
+ return value;
+}
+function revQuick(board,pos,who){
+ const flips=revFlips(board,pos,who);
+ return revEdgeWeight(pos)+flips.length*(rev.difficulty==='hard'?.9:1.6);
+}
+function revChooseCPU(){
+ const who=rev.turn,legal=revMoves(rev.board,who);
+ if(!legal.length)return null;
+ if(rev.difficulty==='easy')return legal[Math.floor(Math.random()*legal.length)];
+ let best=-Infinity,winners=[];
+ const depth=rev.difficulty==='hard'?2:1;
+ const scored=legal.map(pos=>({pos,score:revQuick(rev.board,pos,who)}));
+ scored.sort((a,b)=>b.score-a.score);
+ for(const {pos,score} of (depth>1?scored.slice(0,14):scored)){
+  const after=revApplyBoard(rev.board,pos,who);let value=score*1.1+revEval(after,who)*.48;
+  if(depth>1){
+   let current=who%rev.players+1,replyMoves=[];
+   for(let skip=0;skip<rev.players;skip++){
+    replyMoves=revMoves(after,current);if(replyMoves.length)break;
+    current=current%rev.players+1;
+   }
+   if(replyMoves.length){
+    let worst=Infinity;
+    for(const reply of replyMoves){
+     const next=revApplyBoard(after,reply,current);
+     worst=Math.min(worst,revEval(next,who));
+    }
+    value+=worst*.75;
+   }
+  }
+  if(value>best+.01){best=value;winners=[pos];}
+  else if(Math.abs(value-best)<.01)winners.push(pos);
+ }
+ return winners[Math.floor(Math.random()*winners.length)]??legal[0];
+}
+function revQueueCPU(){
+ clearTimeout(rev.timer);rev.thinking=false;
+ if(!rev.active||rev.over||!rev.vsCPU||rev.turn===1)return;
+ rev.thinking=true;rev.message=revNames[rev.turn]+'のCPUが考え中…';revRender();
+ rev.timer=setTimeout(()=>{
+  rev.thinking=false;
+  if(!rev.active||rev.over||!rev.vsCPU||rev.turn===1)return;
+  const choice=revChooseCPU();if(choice!==null&&choice!==undefined)revCommit(choice);
+  revQueueCPU();
+ },rev.difficulty==='hard'?340:260);
+}
+function revUndo(){
+ clearTimeout(rev.timer);rev.thinking=false;
+ if(!rev.history.length)return;
+ let snapshot;
+ if(rev.vsCPU){
+  do{snapshot=rev.history.pop();}while(rev.history.length&&snapshot.turn!==1);
+ }else snapshot=rev.history.pop();
+ rev.board=snapshot.board.slice();rev.turn=snapshot.turn;rev.last=snapshot.last;
+ rev.over=snapshot.over;rev.message='一手戻したよ。'+revNames[rev.turn]+'の番です';
+ revRender();revQueueCPU();
+}
+function revSetMode(on){
+ if(rev.active===on)return;
+ if(on){
+  if(rubberGame.active)switchRubberMode(false);
+  if(dialog.open)dialog.close();
+  if(!rev.started)revInit();
+ }
+ rev.active=on;scene.classList.toggle('reversi-active',on);
+ revEls.stage.hidden=!on;revEls.button.setAttribute('aria-pressed',String(on));
+ revEls.button.textContent=on?'⚫ リバーシ対戦中':'⚫ リバーシで遊ぶ';
+ if(!on){clearTimeout(rev.timer);rev.thinking=false;}
+ else{revRender();revQueueCPU();revEls.stage.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+revEls.button.addEventListener('click',()=>revSetMode(!rev.active));
+revEls.launchpad=document.getElementById('reversiLaunchpad');
+if(revEls.launchpad){
+ revEls.launchpad.addEventListener('click',()=>{
+  if(rev.active){
+   showToast('いまオセロで遊んでるよ！');
+   revEls.stage.scrollIntoView({behavior:'smooth',block:'center'});
+   return;
+  }
+  if(confirm('オセロで遊びますか？')){
+   revSetMode(true);
+  }else{
+   showToast('またあとで遊ぼう ⚫⚪');
+  }
+ });
+}
+document.getElementById('revClose').addEventListener('click',()=>revSetMode(false));
+document.getElementById('revRestart').addEventListener('click',()=>revInit());
+revEls.undo.addEventListener('click',revUndo);
+// Rule changes restart the match, so no unexpected in-progress changes.
+for(const el of [revEls.players,revEls.vsCPU,revEls.shape,revEls.size,revEls.difficulty]){
+ el.addEventListener('change',()=>{
+  if(el===revEls.players){revEls.size.value=revEls.players.value==='2'?'8':revEls.players.value==='3'?'10':'12';}
+  if(el===revEls.shape&&el.value==='hex')revEls.size.value='10';
+  revInit();
+ });
+}
+// No board click opens an advertisement. No login/network required.
 
 </script>
 </body>
