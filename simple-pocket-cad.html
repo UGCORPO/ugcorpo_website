@@ -10,14 +10,27 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Simple Pocket CAD | UG/CORPO</title>
+  <title>Simple Poket CAD | UG/CORPO</title>
 
   <meta
     name="description"
-    content="Simple Pocket CADは、UG/CORPOが開発する2D・3D CADアプリです。土木・測量・図面作成・座標管理などを手軽に行えます。"
+    content="Simple Poket CADは、UG/CORPOが開発する2D・3D CADアプリです。土木・測量・図面作成・座標管理などを手軽に行えます。"
   >
 
   <link rel="stylesheet" href="style.css">
+  <!-- テスター募集手順のスタイル：既存のstyle.cssを変更せずに利用できます -->
+  <style>
+    .spcad-join-steps { list-style: none; padding: 0; margin: 1.2rem 0 1.5rem; display: grid; gap: 1rem; }
+    .spcad-join-step { padding: 1.25rem; border-radius: 16px; border: 1px solid #d8e3ee; background: #f7fafd; }
+    .spcad-join-step h3 { margin: 0 0 .5rem; color: #17324e; font-size: 1.2rem; }
+    .spcad-join-step p { margin: .35rem 0 1rem; font-size: 1rem; line-height: 1.8; }
+    .spcad-step-button { display: inline-block; max-width: 100%; box-sizing: border-box; padding: .8rem 1.1rem; border-radius: 11px; font-weight: 700; text-align: center; text-decoration: none; line-height: 1.5; }
+    .spcad-step-button-primary { background: #ec590b; color: white; }
+    .spcad-step-button-dark { background: #1b2c3c; color: white; }
+    .spcad-step-button:hover, .spcad-step-button:focus-visible { opacity: .88; color: white; }
+    @media (max-width: 580px) { .spcad-join-step { padding: 1rem; } .spcad-step-button { display: block; } }
+  </style>
+
 
 </head>
 
@@ -46,13 +59,13 @@
       <!-- アプリアイコン -->
       <img
         src="images/mini_cad_icon.png"
-        alt="Simple Pocket CAD"
+        alt="Simple Poket CAD"
         class="detail-icon"
       >
 
 
       <!-- アプリタイトル -->
-      <h1>Simple Pocket CAD</h1>
+      <h1>Simple Poket CAD</h1>
 
       <p>
         現場で手軽に使用できる
@@ -64,7 +77,7 @@
       <h2>アプリ概要</h2>
 
       <p>
-        Simple Pocket CADは、
+        Simple Poket CADは、
         土木・測量・現場作業などで
         手軽に図面を作成することを目的として
         開発しているCADアプリです。
@@ -89,49 +102,74 @@
       </p>
 
 
-      <!-- Google Play リンク -->
-      <h2>ダウンロード・テスト参加</h2>
+      <!-- Google Play クローズドテストへの参加案内 -->
+      <h2>無料ダウンロード・β版テスター募集</h2>
 
       <p>
-        Simple Pocket CADは
-        Google Playでテスト版を公開しています。
+        Simple Poket CADは、Google Playで無料のクローズドテストを実施しています。
+        テストへの参加は、次の順番で行ってください。
       </p>
 
-      <div class="play-links">
+      <ol class="spcad-join-steps">
+        <li class="spcad-join-step">
+          <h3>① Googleグループに参加</h3>
+          <p>
+            まず「Simple-Pocket-CAD-beta-testers」グループに加入します。
+            Google Playで使うGoogleアカウントを選んでください。
+          </p>
+          <!-- 注意：Google Groupsの実際の「グループへのリンク」を管理画面で確認してください。
+               グループのメールアドレスとWeb上のURLの末尾は異なる場合があります。 -->
+          <a
+            href="https://groups.google.com/g/Simple-Pocket-CAD-beta-testers"
+            class="spcad-step-button spcad-step-button-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ① Googleグループに参加する ↗
+          </a>
+        </li>
 
-        <a
-          href="https://play.google.com/apps/testing/jp.ugcorpo.minicad3d"
-          class="test-button"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🧪 クローズドテスト参加募集中！
-        </a>
+        <li class="spcad-join-step">
+          <h3>② Google Playでテスター登録</h3>
+          <p>
+            グループに参加したのと同じGoogleアカウントで開き、
+            「テスターになる（Become a tester）」を押してください。
+          </p>
+          <a
+            href="https://play.google.com/apps/testing/jp.ugcorpo.minicad3d"
+            class="spcad-step-button spcad-step-button-dark"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ② テスター登録をする ↗
+          </a>
+        </li>
 
-        <a
-          href="https://play.google.com/store/apps/details?id=jp.ugcorpo.minicad3d"
-          class="store-button"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ▶ Google Play ストア
-        </a>
+        <li class="spcad-join-step">
+          <h3>③ Google Playで無料インストール</h3>
+          <p>
+            テスター登録が完了したら、同じGoogleアカウントで
+            Google Playストアを開き、アプリをインストールしてください。
+          </p>
+          <a
+            href="https://play.google.com/store/apps/details?id=jp.ugcorpo.minicad3d"
+            class="spcad-step-button spcad-step-button-dark"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ③ Google Playでインストール ↗
+          </a>
+        </li>
+      </ol>
 
-      </div>
-
-
-      <!-- テスター参加案内 -->
       <p class="test-note">
-        ※ テスターとして参加する場合は、
-        「クローズドテスト参加募集中！」から
-        テストにオプトインしてください。
+        ※ グループへの加入だけではテスター登録は完了しません。
+        また、Google Playで「アプリを利用できません」と表示される場合は、
+        グループへの加入状況、Googleアカウント、テスト版の公開状況を確認してください。
       </p>
-
       <p class="test-note">
-        ※ テストへの参加には、指定された
-        Googleグループへの参加が必要です。
-        Google Playストアのリンクを開くだけでは、
-        テスター登録は完了しません。
+        ※ β版のため動作が不安定な場合があります。
+        不具合やご意見はUG/CORPOまでお知らせください。
       </p>
 
 
@@ -139,7 +177,7 @@
       <h2>プライバシーポリシー</h2>
 
       <p>
-        Simple Pocket CADの
+        Simple Poket CADの
         プライバシーポリシーはこちらから確認できます。
       </p>
 
