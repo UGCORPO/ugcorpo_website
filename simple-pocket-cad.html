@@ -29,6 +29,20 @@
     .spcad-step-button-dark { background: #1b2c3c; color: white; }
     .spcad-step-button:hover, .spcad-step-button:focus-visible { opacity: .88; color: white; }
     @media (max-width: 580px) { .spcad-join-step { padding: 1rem; } .spcad-step-button { display: block; } }
+    /* Windows PC版の紹介：共通style.cssを変更せず追加 */
+    .spcad-pc-showcase { margin: 2rem 0; padding: clamp(1rem, 3vw, 1.6rem); border: 1px solid #f4c5bc; border-radius: 18px; background: linear-gradient(140deg, #fffafa, #fff2ee); color: #253346; }
+    .spcad-pc-heading { margin: 0 0 .8rem; }
+    .spcad-pc-layout { display: flex; align-items: center; gap: clamp(1rem, 3vw, 1.6rem); }
+    .spcad-pc-icon { width: clamp(110px, 28%, 190px); height: auto; aspect-ratio: 1; flex: 0 0 auto; object-fit: contain; filter: drop-shadow(0 8px 14px rgba(123, 15, 27, .15)); }
+    .spcad-pc-content { min-width: 0; flex: 1; }
+    .spcad-pc-content p { margin: .45rem 0 1rem; line-height: 1.75; }
+    .spcad-pc-status { display: inline-block; padding: .3rem .7rem; border-radius: 99px; background: #a92230; color: #fff; font-size: .9rem; font-weight: 700; }
+    .spcad-pc-notes { margin: .6rem 0 0; padding-left: 1.25rem; line-height: 1.8; }
+    .spcad-pc-small { color: #634955; font-size: .95rem; }
+    @media (max-width: 560px) {
+      .spcad-pc-layout { flex-direction: column; align-items: flex-start; }
+      .spcad-pc-icon { width: min(46vw, 160px); align-self: center; }
+    }
   </style>
 
 
@@ -100,6 +114,38 @@
         ・測量計算<br>
         ・図面保存
       </p>
+
+
+      <!-- Windows PC版：公開用ダウンロードが用意できるまでは紹介のみ -->
+      <section class="spcad-pc-showcase" id="windows-version" aria-labelledby="spcad-pc-heading">
+        <h2 class="spcad-pc-heading" id="spcad-pc-heading">Windows PC版も開発中！</h2>
+        <div class="spcad-pc-layout">
+          <img
+            src="images/spcad_pc_icon_red.png"
+            alt="赤いSimple Poket CAD PC版アイコン"
+            class="spcad-pc-icon"
+            loading="lazy"
+            width="640"
+            height="640"
+          >
+          <div class="spcad-pc-content">
+            <span class="spcad-pc-status">Windows版・開発中</span>
+            <p>
+              スマートフォン版の使い慣れた画面を活かしながら、
+              Windows PCやタブレットでも使えるSimple Poket CADを開発しています。
+            </p>
+            <ul class="spcad-pc-notes">
+              <li>2D・3D作図、SIMA・SFC・DXFなどの機能を引き継ぐ予定</li>
+              <li>マウス・タッチパッド・タッチ操作を調整中</li>
+              <li>縦長・横長の画面に合わせた表示を改善中</li>
+              <li>Windows 11 ARM64端末で試作版の起動を確認</li>
+            </ul>
+            <p class="spcad-pc-small">
+              ※ 現在は開発・動作検証段階です。一般向けのPC版ダウンロードはまだ公開していません。
+            </p>
+          </div>
+        </div>
+      </section>
 
 
       <!-- Google Play クローズドテストへの参加案内 -->
