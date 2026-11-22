@@ -39,6 +39,18 @@
     .spcad-pc-status { display: inline-block; padding: .3rem .7rem; border-radius: 99px; background: #a92230; color: #fff; font-size: .9rem; font-weight: 700; }
     .spcad-pc-notes { margin: .6rem 0 0; padding-left: 1.25rem; line-height: 1.8; }
     .spcad-pc-small { color: #634955; font-size: .95rem; }
+    .spcad-pc-download { margin: 1.3rem 0 0; padding: 1.1rem; background: #fff; border: 1px solid #efd2d3; border-radius: 14px; }
+    .spcad-pc-showcase .spcad-pc-subheading { margin: 1.35rem 0 .65rem; font-size: 1.25rem; color: #253346; }
+    .spcad-pc-specs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); margin: .8rem 0 1.25rem; font-size: .95rem; line-height: 1.6; }
+    .spcad-pc-specs dt, .spcad-pc-specs dd { margin: 0; padding: .6rem .45rem; border-bottom: 1px solid #eee1e2; overflow-wrap: anywhere; }
+    .spcad-pc-specs dt { font-weight: 700; }
+    .spcad-pc-showcase .spcad-download-button { display: block; box-sizing: border-box; background: #b51f35; color: #fff; border-radius: 12px; padding: .95rem 1rem; text-align: center; text-decoration: none; font-weight: 700; line-height: 1.5; }
+    .spcad-pc-showcase .spcad-download-button:hover, .spcad-pc-showcase .spcad-download-button:focus-visible { background: #94182b; color: #fff; }
+    .spcad-pc-showcase .spcad-pc-link { color: #8e2031; text-decoration: underline; overflow-wrap: anywhere; }
+    .spcad-pc-showcase .spcad-pc-caption { font-size: .86rem; color: #634955; text-align: center; margin: .55rem 0 0; }
+    .spcad-pc-showcase .spcad-pc-steps { padding-left: 1.4rem; line-height: 1.8; }
+    .spcad-pc-showcase .spcad-pc-terms { padding: .8rem 1rem; background: #fff; border: 1px solid #efd2d3; border-radius: 12px; }
+    .spcad-pc-showcase .spcad-pc-terms p { font-size: .95rem; line-height: 1.75; margin: .5rem 0; }
     @media (max-width: 560px) {
       .spcad-pc-layout { flex-direction: column; align-items: flex-start; }
       .spcad-pc-icon { width: min(46vw, 160px); align-self: center; }
@@ -116,40 +128,61 @@
       </p>
 
 
-      <!-- Windows PC版：公開用ダウンロードが用意できるまでは紹介のみ -->
+      <!-- Windows PC版：β1 無料ダウンロード -->
       <section class="spcad-pc-showcase" id="windows-version" aria-labelledby="spcad-pc-heading">
-        <h2 class="spcad-pc-heading" id="spcad-pc-heading">Windows PC版も開発中！</h2>
+        <h2 class="spcad-pc-heading" id="spcad-pc-heading">Simple Poket CAD PC版</h2>
         <div class="spcad-pc-layout">
-          <img
-            src="images/spcad_pc_icon_red.png"
-            alt="赤いSimple Poket CAD PC版アイコン"
-            class="spcad-pc-icon"
-            loading="lazy"
-            width="640"
-            height="640"
-          >
+          <img src="images/spcad_pc_icon_red.png" alt="Simple Poket CAD PC版の赤いアイコン" class="spcad-pc-icon" loading="lazy" width="640" height="640">
           <div class="spcad-pc-content">
-            <span class="spcad-pc-status">Windows版・開発中</span>
-            <p>
-              スマートフォン版の使い慣れた画面を活かしながら、
-              Windows PCやタブレットでも使えるSimple Poket CADを開発しています。
-            </p>
+            <span class="spcad-pc-status">Windows版・β1</span>
+            <p>現場でも事務所でも。測量・作図・現場計算を、これひとつで。</p>
+            <p>スマートフォン版の使い慣れたデザインを活かした、Windows PC・タブレット向けの2D・3D CADです。個人・法人を問わず、商用業務でも無料でご利用いただけます。</p>
             <ul class="spcad-pc-notes">
-              <li>2D・3D作図、SIMA・SFC・DXFなどの機能を引き継ぐ予定</li>
-              <li>マウス・タッチパッド・タッチ操作を調整中</li>
-              <li>縦長・横長の画面に合わせた表示を改善中</li>
-              <li>Windows 11 ARM64端末で試作版の起動を確認</li>
+              <li>2D作図・3D表示・座標入力・測量計算</li>
+              <li>SIMA・SFC・DXFの取り扱い、PDF関連機能</li>
+              <li>マウス・タッチパッド・タッチ操作、縦横画面対応</li>
             </ul>
-            <p class="spcad-pc-small">
-              ※ 現在は開発・動作検証段階です。一般向けのPC版ダウンロードはまだ公開していません。
-            </p>
           </div>
         </div>
+        <div class="spcad-pc-download">
+          <h3 class="spcad-pc-subheading">Windows版 無料ダウンロード</h3>
+          <dl class="spcad-pc-specs">
+            <dt>バージョン</dt><dd>β1（初回公開版）</dd>
+            <dt>対応OS</dt><dd>Windows 11（64ビット）</dd>
+            <dt>CPU</dt><dd>x64（Intel・AMD向け）／Windows 11 ARM64はx64互換機能を利用</dd>
+            <dt>動作確認</dt><dd>Snapdragon搭載Surfaceでx64版の起動・基本機能を確認。全機種での動作を保証するものではありません。</dd>
+            <dt>利用料金</dt><dd>無料（個人・商用利用可）</dd>
+            <dt>配布形式</dt><dd>ZIP（インストーラー不要）</dd>
+          </dl>
+          <p class="spcad-pc-small">ダウンロード前に、下記の利用条件とβ版の注意事項をご確認ください。</p>
+          <a class="spcad-download-button" href="downloads/Simple_Poket_CAD_PC_x64_Beta1.zip" download>Windows版を無料ダウンロード ↓</a>
+          <p class="spcad-pc-caption">x64版・ZIP形式 ｜ 開発元 UG/CORPO</p>
+        </div>
+        <h3 class="spcad-pc-subheading">起動方法</h3>
+        <ol class="spcad-pc-steps">
+          <li>ダウンロードしたZIPを右クリックして「すべて展開」。</li>
+          <li>展開したフォルダー内の <code>spcad_windows.exe</code> を起動します。</li>
+          <li>EXE・DLL・dataフォルダーは同じ構成のまま保管してください。</li>
+        </ol>
+        <p class="spcad-pc-small">通常の起動にVS CodeやFlutterなどの開発環境は不要です。ランタイム不足の場合は <a class="spcad-pc-link" href="https://learn.microsoft.com/ja-jp/cpp/windows/latest-supported-vc-redist" target="_blank" rel="noopener noreferrer">Microsoft公式のVisual C++再頒布可能パッケージ（x64）</a> をご確認ください。電子署名がないため、発行元不明の警告が表示される場合があります。不審なファイルは実行しないでください。</p>
+        <h3 class="spcad-pc-subheading" id="windows-terms">利用条件</h3>
+        <div class="spcad-pc-terms">
+          <p><strong>個人利用・商用利用ともに無料です。</strong> 自分で作成した図面・成果物は自由にご利用いただけます。</p>
+          <p>独自部分の無断再配布・転載・販売や改変版の無断配布は禁止します。自己利用のための複製・バックアップは可能です。第三者ライブラリにはそれぞれのライセンスが適用され、そこで認められる権利を制限しません。</p>
+          <p>ソースコードは非公開です。ソフトの紹介には公式ページのURLをご利用ください。</p>
+          <p><a class="spcad-pc-link" href="downloads/SPCAD_PC_Beta1_LICENSE.txt">利用条件の全文を読む（TXT）</a></p>
+          <p>Copyright © 2026 UG/CORPO（独自部分）</p>
+        </div>
+        <h3 class="spcad-pc-subheading">β版の注意事項・不具合報告</h3>
+        <p>本ソフトはβ版です。重要な図面・座標は必ずバックアップし、距離・面積・測量計算などの結果は別の方法でも確認してから実務に使用してください。</p>
+        <p>不具合はOS・CPU・操作手順・エラー内容を添えて <a class="spcad-pc-link" href="mailto:utogcorpo@gmail.com?subject=Simple%20Poket%20CAD%20PC%20Beta1">UG/CORPOへメール</a> でお知らせください。機密図面や個人情報は送信しないようお願いします。</p>
+        <h3 class="spcad-pc-subheading">更新履歴</h3>
+        <p class="spcad-pc-small">β1：Windows向け初回公開版。スマートフォン版をベースに縦横画面およびPC操作へ対応。</p>
       </section>
 
 
       <!-- Google Play クローズドテストへの参加案内 -->
-      <h2>無料ダウンロード・β版テスター募集</h2>
+      <h2>Android版 無料ダウンロード・β版テスター募集</h2>
 
       <p>
         Simple Poket CADは、Google Playで無料のクローズドテストを実施しています。
